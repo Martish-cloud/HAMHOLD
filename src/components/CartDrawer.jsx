@@ -137,11 +137,15 @@ export default function CartDrawer() {
                     className="flex gap-4 p-3.5 rounded-xl bg-obsidian-card/60 border border-champagne/15"
                   >
                     {/* Item Image */}
-                    <div className="w-20 h-20 rounded-lg bg-obsidian p-2 flex items-center justify-center shrink-0 border border-champagne/10">
+                    <div className="w-20 h-20 rounded-lg bg-obsidian-card overflow-hidden flex items-center justify-center shrink-0 border border-champagne/15">
                       <img
                         src={item.product.primaryImage}
                         alt={item.product.name}
-                        className="w-full h-full object-contain filter drop-shadow-md"
+                        className={`w-full h-full ${
+                          item.product.primaryImage?.endsWith('.svg')
+                            ? 'object-contain p-2 filter drop-shadow-md'
+                            : 'object-cover object-center'
+                        }`}
                       />
                     </div>
 

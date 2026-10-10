@@ -78,12 +78,16 @@ export default function WishlistDrawer() {
                     setSelectedProduct(prod);
                     setIsWishlistOpen(false);
                   }}
-                  className="w-20 h-20 rounded-lg bg-obsidian p-2 flex items-center justify-center shrink-0 border border-champagne/10 cursor-pointer"
+                  className="w-20 h-20 rounded-lg bg-obsidian-card overflow-hidden flex items-center justify-center shrink-0 border border-champagne/15 cursor-pointer"
                 >
                   <img
                     src={prod.primaryImage}
                     alt={prod.name}
-                    className="w-full h-full object-contain filter drop-shadow-md"
+                    className={`w-full h-full ${
+                      prod.primaryImage?.endsWith('.svg')
+                        ? 'object-contain p-2 filter drop-shadow-md'
+                        : 'object-cover object-center'
+                    }`}
                   />
                 </div>
 

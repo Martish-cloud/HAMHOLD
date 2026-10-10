@@ -356,12 +356,16 @@ export default function FloatingJewellerySearch() {
                                 }`}
                               >
                                 {/* Thumbnail */}
-                                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-lg bg-obsidian/70 border border-champagne/20 flex items-center justify-center p-1.5 shrink-0 overflow-hidden">
+                                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-lg bg-obsidian/70 border border-champagne/20 flex items-center justify-center shrink-0 overflow-hidden">
                                   <img
                                     src={prod.thumbImage || prod.primaryImage}
                                     alt={prod.name}
                                     loading="lazy"
-                                    className="w-full h-full object-contain filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-300"
+                                    className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
+                                      (prod.thumbImage || prod.primaryImage)?.endsWith('.svg')
+                                        ? 'object-contain p-1 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]'
+                                        : 'object-cover object-center'
+                                    }`}
                                   />
                                 </div>
 

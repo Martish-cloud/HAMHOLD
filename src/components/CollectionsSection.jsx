@@ -186,13 +186,17 @@ export default function CollectionsSection() {
                   <div className="pointer-events-none absolute inset-0 z-0 rounded-xl bg-radial-gradient from-champagne/[0.08] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
 
                   {/* Product Image Container with Depth */}
-                  <div className="relative z-10 w-full aspect-square flex items-center justify-center p-3 mb-3 bg-obsidian/60 group-hover:bg-obsidian/40 rounded-lg overflow-hidden border border-champagne/10 group-hover:border-champagne/25 transition-colors duration-350">
-                    <div className="absolute bottom-2 w-3/4 h-3 bg-black/40 blur-sm rounded-full" />
+                  <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-3 bg-obsidian-card rounded-lg overflow-hidden border border-champagne/15 group-hover:border-champagne/40 transition-colors duration-350">
                     <img
                       src={prod.primaryImage}
                       alt={prod.name}
                       loading="lazy"
-                      className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500 ease-out"
+                      decoding="async"
+                      className={`w-full h-full transition-transform duration-500 ease-out group-hover:scale-105 will-change-transform ${
+                        prod.primaryImage?.endsWith('.svg')
+                          ? 'object-contain p-4 filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]'
+                          : prod.imagePosition || 'object-cover object-center'
+                      }`}
                     />
                   </div>
                   <div className="relative z-10">

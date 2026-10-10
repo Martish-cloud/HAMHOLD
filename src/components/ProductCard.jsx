@@ -125,7 +125,7 @@ export default function ProductCard({ product, priority = false }) {
           className={`product-card-image w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.04] will-change-transform ${
             product.primaryImage?.endsWith('.svg')
               ? 'object-contain p-6 relative z-[1] filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)]'
-              : 'object-cover object-center'
+              : product.imagePosition || 'object-cover object-center'
           }`}
         />
 

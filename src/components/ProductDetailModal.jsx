@@ -68,7 +68,9 @@ export default function ProductDetailModal() {
               className="relative w-full aspect-square flex items-center justify-center cursor-zoom-in overflow-hidden rounded-xl border border-champagne/10 bg-obsidian-card/40"
               onClick={() => setIsZoomed(!isZoomed)}
             >
-              <div className="absolute bottom-6 w-3/4 h-5 bg-black/50 blur-md rounded-full pointer-events-none" />
+              {(gallery[activeImageIdx]?.src || selectedProduct.primaryImage)?.endsWith('.svg') && (
+                <div className="absolute bottom-6 w-3/4 h-5 bg-black/50 blur-md rounded-full pointer-events-none" />
+              )}
               <img
                 src={gallery[activeImageIdx]?.src || selectedProduct.primaryImage}
                 alt={selectedProduct.name}
@@ -78,7 +80,11 @@ export default function ProductDetailModal() {
                     e.currentTarget.src = selectedProduct.primaryImage;
                   }
                 }}
-                className={`w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] transition-transform duration-500 ${
+                className={`w-full h-full object-contain transition-transform duration-500 ${
+                  (gallery[activeImageIdx]?.src || selectedProduct.primaryImage)?.endsWith('.svg')
+                    ? 'filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] p-6'
+                    : ''
+                } ${
                   isZoomed ? 'scale-150' : 'scale-100 hover:scale-105'
                 }`}
               />
@@ -96,7 +102,7 @@ export default function ProductDetailModal() {
                     setActiveImageIdx(idx);
                     setIsZoomed(false);
                   }}
-                  className={`relative w-16 h-16 rounded-lg overflow-hidden border p-1.5 transition-all ${
+                  className={`relative w-16 h-16 rounded-lg overflow-hidden border transition-all ${
                     activeImageIdx === idx
                       ? 'border-champagne bg-champagne/15 scale-105'
                       : 'border-champagne/20 bg-obsidian-card/60 opacity-70 hover:opacity-100'
@@ -105,7 +111,7 @@ export default function ProductDetailModal() {
                   <img
                     src={img.src}
                     alt={img.title}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover object-center"
                   />
                 </button>
               ))}
