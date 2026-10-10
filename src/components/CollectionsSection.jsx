@@ -3,6 +3,7 @@ import { COLLECTIONS, PRODUCTS } from '../data/products';
 import { useShop } from '../context/ShopContext';
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GhostInterleapText } from './TextAnimations';
+import { useParallax } from '../hooks/useParallax';
 
 export default function CollectionsSection() {
   const { navigateToCatalogue, setSelectedProduct } = useShop();
@@ -11,13 +12,38 @@ export default function CollectionsSection() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
+  const bgParallaxRef = useParallax({ speed: 0.14, maxOffset: 35 });
+  const showcaseParallaxRef = useParallax({ speed: 0.05, maxOffset: 12 });
+
   const currentCollection =
     COLLECTIONS.find((c) => c.id === activeCollectionId) || COLLECTIONS[0];
 
-  // Get all products from this collection for full swiping experience
-  const collectionProducts = PRODUCTS.filter(
-    (p) => p.collection === activeCollectionId
+  // Get products from this collection for full swiping experience, excluding Samara Red (₹92,000)
+  let collectionProducts = PRODUCTS.filter(
+    (p) => p.collection === activeCollectionId && p.id !== 'samara-ribbed-bangle'
   );
+
+  // Exact required order for SIGNATURE COLLECTION curated pieces:
+  // Position 1: Original Product #4 (symphony-sapphire-collar)
+  // Position 2: Original Product #2 (zephyr-sculpted-hoops)
+  // Position 3: Original Product #1 (elysian-emerald-ring)
+  // Position 4: Original Product #3 (harmonia-tennis-necklace)
+  if (activeCollectionId === 'SIGNATURE') {
+    const signatureOrder = [
+      'symphony-sapphire-collar',
+      'zephyr-sculpted-hoops',
+      'elysian-emerald-ring',
+      'harmonia-tennis-necklace'
+    ];
+    collectionProducts.sort((a, b) => {
+      const idxA = signatureOrder.indexOf(a.id);
+      const idxB = signatureOrder.indexOf(b.id);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return 0;
+    });
+  }
 
   const checkScroll = () => {
     if (!scrollRef.current) return;
@@ -44,8 +70,11 @@ export default function CollectionsSection() {
 
   return (
     <section className="py-20 md:py-32 bg-espresso/30 border-t border-champagne/10 relative overflow-hidden">
-      {/* Decorative ambient lighting */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-champagne/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* Decorative ambient lighting with parallax */}
+      <div
+        ref={bgParallaxRef}
+        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-champagne/5 rounded-full blur-[140px] pointer-events-none will-change-transform"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -82,7 +111,10 @@ export default function CollectionsSection() {
         </div>
 
         {/* Active Collection Editorial Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-obsidian-card/70 border border-champagne/20 rounded-2xl p-6 sm:p-10 md:p-12 shadow-2xl backdrop-blur-md">
+        <div
+          ref={showcaseParallaxRef}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-obsidian-card/70 border border-champagne/20 rounded-2xl p-6 sm:p-10 md:p-12 shadow-2xl backdrop-blur-md will-change-transform"
+        >
           {/* Left: Collection Story & CTA */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
@@ -147,19 +179,24 @@ export default function CollectionsSection() {
                   key={prod.id}
                   onClick={() => setSelectedProduct(prod)}
                   data-cursor="view"
-                  className="flex-shrink-0 w-48 sm:w-56 snap-start group p-4 rounded-xl bg-obsidian-surface/80 border border-champagne/15 hover:border-champagne/45 transition-all duration-300 cursor-pointer flex flex-col justify-between hover:shadow-luxury-hover"
+                  className="card-hover-lift-fill flex-shrink-0 w-48 sm:w-56 snap-start group p-4 rounded-xl bg-obsidian-surface/85 hover:bg-obsidian-surface border border-champagne/15 hover:border-champagne/50 transition-all duration-350 cursor-pointer flex flex-col justify-between hover:shadow-luxury-hover will-change-transform"
                 >
-                  <div className="relative w-full aspect-square flex items-center justify-center p-3 mb-3 bg-obsidian/50 rounded-lg overflow-hidden border border-champagne/10">
+                  {/* Warm Charcoal / Bronze Luxury Background Fill Transition */}
+                  <div className="pointer-events-none absolute inset-0 z-0 rounded-xl bg-gradient-to-br from-espresso-light/40 via-obsidian-card to-obsidian opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
+                  <div className="pointer-events-none absolute inset-0 z-0 rounded-xl bg-radial-gradient from-champagne/[0.08] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
+
+                  {/* Product Image Container with Depth */}
+                  <div className="relative z-10 w-full aspect-square flex items-center justify-center p-3 mb-3 bg-obsidian/60 group-hover:bg-obsidian/40 rounded-lg overflow-hidden border border-champagne/10 group-hover:border-champagne/25 transition-colors duration-350">
                     <div className="absolute bottom-2 w-3/4 h-3 bg-black/40 blur-sm rounded-full" />
                     <img
                       src={prod.primaryImage}
                       alt={prod.name}
                       loading="lazy"
-                      className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
                   </div>
-                  <div>
-                    <h4 className="font-serif-luxury text-sm text-ivory line-clamp-1 group-hover:text-champagne transition-colors">
+                  <div className="relative z-10">
+                    <h4 className="font-serif-luxury text-sm text-ivory line-clamp-1 group-hover:text-champagne transition-colors duration-300">
                       {prod.name}
                     </h4>
                     <div className="text-xs font-semibold text-champagne mt-1">
@@ -175,3 +212,4 @@ export default function CollectionsSection() {
     </section>
   );
 }
+

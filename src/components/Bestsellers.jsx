@@ -4,16 +4,24 @@ import ProductCard from './ProductCard';
 import { useShop } from '../context/ShopContext';
 import { ArrowRight, Flame } from 'lucide-react';
 import { NeonTypewriterText } from './TextAnimations';
+import { useParallax } from '../hooks/useParallax';
 
 export default function Bestsellers() {
   const { navigateToCatalogue } = useShop();
+  const bgParallaxRef = useParallax({ speed: 0.12, maxOffset: 30 });
 
   // Pick 8 to 12 bestsellers across categories
   const bestsellers = PRODUCTS.filter((p) => p.isBestseller).slice(0, 8);
 
   return (
-    <section className="py-20 md:py-28 bg-espresso-dark/60 border-t border-champagne/10 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-28 bg-espresso-dark/60 border-t border-champagne/10 relative overflow-hidden">
+      {/* Decorative ambient lighting with parallax */}
+      <div
+        ref={bgParallaxRef}
+        className="absolute top-1/3 left-1/4 w-[420px] h-[420px] bg-champagne/[0.04] rounded-full blur-[130px] pointer-events-none will-change-transform"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16">
           <div>
@@ -44,3 +52,4 @@ export default function Bestsellers() {
     </section>
   );
 }
+

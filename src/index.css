@@ -289,18 +289,62 @@
   will-change: transform, opacity, filter;
 }
 
+/* ==========================================================================
+   PREMIUM HOVER LIFT & FILL EFFECTS (HAMHOLD LUXURY STANDARD)
+   ========================================================================== */
+.card-hover-lift-fill {
+  position: relative;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.card-hover-lift-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 0%, rgba(214, 194, 154, 0.12) 0%, rgba(168, 135, 91, 0.06) 40%, rgba(26, 20, 18, 0.85) 100%);
+  opacity: 0;
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-hover-lift-fill:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 42px -12px rgba(0, 0, 0, 0.85),
+                0 0 24px rgba(214, 194, 154, 0.14),
+                inset 0 1px 1px rgba(214, 194, 154, 0.22);
+    border-color: rgba(214, 194, 154, 0.45);
+  }
+
+  .card-hover-lift-fill:hover::before {
+    opacity: 1;
+  }
+}
+
 /* Reduced Motion Override for Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .animate-blur-wipe,
   .animate-ghost-converge-1,
   .animate-ghost-converge-2,
-  .animate-ghost-main {
+  .animate-ghost-main,
+  .card-hover-lift-fill,
+  .card-hover-lift-fill:hover {
     animation: none !important;
     filter: none !important;
     -webkit-mask-image: none !important;
     mask-image: none !important;
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
+  }
+  .card-hover-lift-fill::before {
+    transition: none !important;
   }
 }
+
 

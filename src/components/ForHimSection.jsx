@@ -4,17 +4,23 @@ import ProductCard from './ProductCard';
 import { useShop } from '../context/ShopContext';
 import { ArrowRight, Shield } from 'lucide-react';
 import { BlurWipeText } from './TextAnimations';
+import { useParallax } from '../hooks/useParallax';
 
 export default function ForHimSection() {
   const { navigateToCatalogue } = useShop();
+  const bgParallaxRef = useParallax({ speed: 0.14, maxOffset: 35 });
+  const ambassadorParallaxRef = useParallax({ speed: 0.06, maxOffset: 16 });
 
-  // Men's jewellery products (6 products)
+  // Men's jewellery products (4 products)
   const mensProducts = PRODUCTS.filter((p) => p.gender === 'men' || p.category === 'mens').slice(0, 4);
 
   return (
     <section className="py-20 md:py-28 bg-obsidian-light/40 border-t border-champagne/10 relative overflow-hidden">
-      {/* Deep moody architectural lighting */}
-      <div className="absolute top-1/2 right-1/4 w-[450px] h-[450px] bg-espresso/40 rounded-full blur-[140px] pointer-events-none" />
+      {/* Deep moody architectural lighting with parallax */}
+      <div
+        ref={bgParallaxRef}
+        className="absolute top-1/2 right-1/4 w-[450px] h-[450px] bg-espresso/40 rounded-full blur-[140px] pointer-events-none will-change-transform"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header Tag */}
@@ -65,14 +71,15 @@ export default function ForHimSection() {
               </div>
             </div>
 
-            {/* Right Column: Ayush / Men's Brand Ambassador Editorial Image */}
+            {/* Right Column: Ayush / Men's Brand Ambassador Editorial Image with Parallax Depth */}
             <div className="lg:col-span-6 relative order-1 lg:order-2 h-72 sm:h-96 md:h-[460px] lg:h-[500px] overflow-hidden bg-obsidian-surface flex items-center justify-center">
               <picture>
                 <source media="(max-width: 768px)" srcSet="/images/brand/ambassador/ayush-ambassador-mobile.webp" />
                 <img
+                  ref={ambassadorParallaxRef}
                   src="/images/brand/ambassador/ayush-ambassador.webp"
                   alt="HAMHOLD Men's Brand Ambassador"
-                  className="w-full h-full object-cover object-[center_20%] md:object-[50%_25%] transition-transform duration-700 hover:scale-[1.02]"
+                  className="w-full h-full object-cover object-[center_20%] md:object-[50%_25%] transition-transform duration-700 hover:scale-[1.02] will-change-transform"
                   loading="lazy"
                   decoding="async"
                 />
@@ -110,10 +117,13 @@ export default function ForHimSection() {
           </button>
         </div>
 
-        {/* 4 Men's Jewellery Cards Grid with Shimmer Stroke Effects */}
+        {/* 4 Men's Jewellery Cards Grid with Shimmer Stroke Effects and Refined Hover Lift */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {mensProducts.map((product) => (
-            <div key={product.id} className="relative group/shimmer rounded-xl p-[1.5px] overflow-hidden h-full">
+            <div
+              key={product.id}
+              className="relative group/shimmer rounded-xl p-[1.5px] overflow-hidden h-full transition-transform duration-350 hover:-translate-y-1.5"
+            >
               {/* Continuous animated travelling gold light streak along card perimeter */}
               <div
                 className="absolute -inset-[150%] pointer-events-none opacity-40 group-hover/shimmer:opacity-100 transition-opacity duration-500 animate-[spin_6s_linear_infinite]"
@@ -131,3 +141,4 @@ export default function ForHimSection() {
     </section>
   );
 }
+
