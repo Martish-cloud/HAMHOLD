@@ -326,12 +326,34 @@
   }
 }
 
+/* ==========================================================================
+   CONTINUOUS TEXT & ICON MARQUEE ANIMATION (RIGHT-TO-LEFT)
+   ========================================================================== */
+@keyframes marqueeRtl {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-rtl {
+  animation: marqueeRtl 36s linear infinite;
+  will-change: transform;
+}
+
+.marquee-wrapper:hover .animate-marquee-rtl {
+  animation-play-state: paused;
+}
+
 /* Reduced Motion Override for Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .animate-blur-wipe,
   .animate-ghost-converge-1,
   .animate-ghost-converge-2,
   .animate-ghost-main,
+  .animate-marquee-rtl,
   .card-hover-lift-fill,
   .card-hover-lift-fill:hover {
     animation: none !important;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { PRODUCTS, formatINR } from '../data/products';
-import { X, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
+import { X, Trash2, ShoppingBag, ArrowRight, Heart, Sparkles } from 'lucide-react';
 
 export default function WishlistDrawer() {
   const {
@@ -9,7 +9,7 @@ export default function WishlistDrawer() {
     isWishlistOpen,
     setIsWishlistOpen,
     toggleWishlist,
-    addToCart,
+    moveWishlistToBag,
     navigateToCatalogue,
     setSelectedProduct
   } = useShop();
@@ -17,11 +17,6 @@ export default function WishlistDrawer() {
   if (!isWishlistOpen) return null;
 
   const wishlistedProducts = PRODUCTS.filter((p) => wishlist.includes(p.id));
-
-  const handleMoveToCart = (prod) => {
-    addToCart(prod);
-    toggleWishlist(prod.id);
-  };
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
@@ -32,9 +27,15 @@ export default function WishlistDrawer() {
       />
 
       {/* Drawer */}
-      <div className="fixed inset-y-0 right-0 max-w-md w-full bg-obsidian-surface border-l border-champagne/20 shadow-2xl flex flex-col justify-between animate-fade-in z-10">
+      <div
+        className="fixed inset-y-0 right-0 max-w-md w-full bg-obsidian-surface border-l border-champagne/25 shadow-2xl flex flex-col justify-between animate-fade-in z-10"
+        style={{
+          transform: 'perspective(1200px)',
+          transformStyle: 'preserve-3d'
+        }}
+      >
         {/* Header */}
-        <div className="p-6 border-b border-champagne/15 flex items-center justify-between">
+        <div className="p-5 sm:p-6 border-b border-champagne/15 flex items-center justify-between bg-obsidian-surface/95 backdrop-blur-md">
           <div className="flex items-center gap-2">
             <span className="font-serif-luxury text-xl text-ivory tracking-wider font-normal">
               SAVED PIECES
@@ -45,23 +46,30 @@ export default function WishlistDrawer() {
           </div>
           <button
             onClick={() => setIsWishlistOpen(false)}
-            className="p-1 text-ivory hover:text-champagne transition-colors"
+            aria-label="Close wishlist"
+            className="p-1.5 text-ivory-muted hover:text-champagne transition-colors rounded-full hover:bg-champagne/10"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content list */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
           {wishlistedProducts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-ivory-muted text-sm mb-6">No pieces saved to your wishlist yet.</p>
+              <div className="w-16 h-16 rounded-full bg-champagne/10 border border-champagne/20 flex items-center justify-center text-champagne mx-auto mb-4">
+                <Heart className="w-7 h-7" />
+              </div>
+              <p className="font-serif-luxury text-lg text-ivory mb-1">Your Wishlist is Empty</p>
+              <p className="text-ivory-muted text-xs mb-6 max-w-xs mx-auto">
+                Explore our fine jewellery pieces and save your favorite creations to view or acquire later.
+              </p>
               <button
                 onClick={() => {
                   setIsWishlistOpen(false);
                   navigateToCatalogue();
                 }}
-                className="px-6 py-3 rounded-full bg-champagne text-obsidian text-xs uppercase tracking-widest font-semibold"
+                className="px-8 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs uppercase tracking-widest font-semibold transition-all shadow-glow"
               >
                 DISCOVER CATALOGUE
               </button>
@@ -70,7 +78,7 @@ export default function WishlistDrawer() {
             wishlistedProducts.map((prod) => (
               <div
                 key={prod.id}
-                className="flex gap-4 p-3.5 rounded-xl bg-obsidian-card/60 border border-champagne/15 hover:border-champagne/30 transition-all"
+                className="flex gap-4 p-3.5 rounded-xl bg-obsidian-card/70 border border-champagne/15 hover:border-champagne/35 transition-all group"
               >
                 {/* Image */}
                 <div
@@ -92,28 +100,28 @@ export default function WishlistDrawer() {
                 </div>
 
                 {/* Details */}
-                <div className="flex-1 flex flex-col justify-between">
+                <div className="flex-1 flex flex-col justify-between min-w-0">
                   <div>
-                    <div className="flex items-start justify-between">
+                    <div className="flex items-start justify-between gap-2">
                       <h4
                         onClick={() => {
                           setSelectedProduct(prod);
                           setIsWishlistOpen(false);
                         }}
-                        className="font-serif-luxury text-sm text-ivory font-normal line-clamp-1 cursor-pointer hover:text-champagne"
+                        className="font-serif-luxury text-sm text-ivory font-normal truncate cursor-pointer hover:text-champagne transition-colors"
                       >
                         {prod.name}
                       </h4>
                       <button
                         onClick={() => toggleWishlist(prod.id)}
-                        className="text-ivory-muted/60 hover:text-red-400 p-1"
+                        className="text-ivory-muted/60 hover:text-red-400 p-1 transition-colors"
                         aria-label="Remove item"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
                     <div className="text-[11px] text-ivory-muted mt-0.5">
-                      {prod.metal.split(' ')[0]} • {prod.collection}
+                      {prod.metal.split(' ')[0]} • {prod.collection} Collection
                     </div>
                   </div>
 
@@ -122,8 +130,8 @@ export default function WishlistDrawer() {
                       {formatINR(prod.price)}
                     </span>
                     <button
-                      onClick={() => handleMoveToCart(prod)}
-                      className="px-3 py-1.5 rounded-lg bg-champagne/15 hover:bg-champagne text-champagne hover:text-obsidian text-[11px] font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-champagne/30"
+                      onClick={() => moveWishlistToBag(prod)}
+                      className="px-3.5 py-1.5 rounded-lg bg-champagne/15 hover:bg-champagne text-champagne hover:text-obsidian text-[11px] font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-champagne/30 shadow-sm"
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />
                       <span>Move To Bag</span>
@@ -137,13 +145,13 @@ export default function WishlistDrawer() {
 
         {/* Footer */}
         {wishlistedProducts.length > 0 && (
-          <div className="p-6 border-t border-champagne/15 bg-obsidian-card/80">
+          <div className="p-5 sm:p-6 border-t border-champagne/15 bg-obsidian-card/90">
             <button
               onClick={() => {
                 setIsWishlistOpen(false);
                 navigateToCatalogue();
               }}
-              className="w-full py-3 rounded-full border border-champagne/30 text-ivory hover:text-champagne hover:border-champagne text-xs uppercase tracking-widest font-semibold transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-full border border-champagne/30 text-ivory hover:text-champagne hover:border-champagne text-xs uppercase tracking-widest font-semibold transition-all flex items-center justify-center gap-2"
             >
               <span>EXPLORE MORE JEWELLERY</span>
               <ArrowRight className="w-4 h-4" />

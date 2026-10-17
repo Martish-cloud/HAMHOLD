@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useShop } from '../context/ShopContext';
 import { formatINR } from '../data/products';
 import { X, Heart, Star, ShieldCheck, Truck, RotateCcw, Check, Sparkles, Ruler } from 'lucide-react';
+import DeliveryChecker from './DeliveryChecker';
 
 export default function ProductDetailModal() {
   const {
@@ -204,33 +205,9 @@ export default function ProductDetailModal() {
                 </div>
               )}
 
-              {/* Indian Pincode Delivery Estimator */}
-              <div className="my-5 p-3.5 rounded-xl bg-obsidian-card/60 border border-champagne/15">
-                <span className="text-[10px] uppercase tracking-widest text-champagne font-semibold block mb-2">
-                  Check Insured Delivery Time
-                </span>
-                <form onSubmit={handleCheckPincode} className="flex gap-2">
-                  <input
-                    type="text"
-                    maxLength={6}
-                    placeholder="Enter 6-digit Pincode"
-                    value={pincode}
-                    onChange={(e) => setPincode(e.target.value)}
-                    className="flex-1 px-3 py-2 rounded-lg bg-obsidian text-ivory text-xs border border-champagne/20 focus:outline-none focus:border-champagne font-mono"
-                  />
-                  <button
-                    type="submit"
-                    className="px-4 py-2 rounded-lg bg-champagne/20 hover:bg-champagne text-champagne hover:text-obsidian border border-champagne/30 text-xs uppercase tracking-wider font-semibold transition-colors"
-                  >
-                    Check
-                  </button>
-                </form>
-                {pincodeResult && (
-                  <p className="text-[11px] text-champagne-light mt-2 flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-champagne" />
-                    {pincodeResult}
-                  </p>
-                )}
+              {/* Delivery Availability Estimator */}
+              <div className="my-5">
+                <DeliveryChecker compact />
               </div>
 
               {/* Accordions */}

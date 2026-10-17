@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Heart, ShoppingBag, Menu, X, User, ChevronDown } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, X, User, ChevronDown, Package, LogOut, Truck, BookOpen } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 import { COLLECTIONS, CATEGORIES } from '../data/products';
 import { BlurWipeText } from './TextAnimations';
@@ -13,13 +13,20 @@ export default function Navbar() {
     setIsSearchOpen,
     isMobileMenuOpen,
     setIsMobileMenuOpen,
-    setIsAboutOpen,
+    setIsAuthModalOpen,
+    customer,
+    signOutCustomer,
+    orders,
     navigateToCatalogue,
+    navigateToOurStory,
+    navigateToTrackOrder,
+    navigateToOrders,
     setActiveView
   } = useShop();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState(null);
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,12 +45,12 @@ export default function Navbar() {
         <span className="hidden md:inline text-ivory-muted/80">100% BIS HALLMARKED &amp; CERTIFIED</span>
       </div>
 
-      {/* 2. Main Navigation Bar */}
+      {/* 2. Main Navigation Bar with 3D Depth */}
       <nav
         className={`w-full transition-all duration-500 border-b ${
           isScrolled
-            ? 'bg-obsidian/95 backdrop-blur-xl border-champagne/20 py-3.5 shadow-2xl'
-            : 'bg-obsidian/85 backdrop-blur-md border-champagne/10 py-5'
+            ? 'bg-obsidian/95 backdrop-blur-2xl border-champagne/25 py-3 shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(214,194,154,0.06)]'
+            : 'bg-obsidian/85 backdrop-blur-md border-champagne/10 py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -66,7 +73,7 @@ export default function Navbar() {
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-7 text-[11px] uppercase tracking-[0.2em] font-medium text-ivory-soft">
+          <div className="hidden lg:flex items-center space-x-6 text-[11px] uppercase tracking-[0.18em] font-medium text-ivory-soft">
             <button
               onClick={() => navigateToCatalogue({ isNew: true })}
               className="hover:text-champagne transition-colors duration-200 py-2 relative group"
@@ -91,11 +98,11 @@ export default function Navbar() {
 
               {/* Mega Dropdown */}
               {activeMegaMenu === 'jewellery' && (
-                <div className="absolute top-full -left-12 w-64 p-4 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-2xl backdrop-blur-2xl animate-fade-in">
+                <div className="absolute top-full -left-12 w-64 p-4 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-2xl backdrop-blur-2xl animate-fade-in z-50">
                   <div className="text-[9px] uppercase tracking-widest text-champagne mb-3 font-semibold pb-1.5 border-b border-champagne/15">
                     Fine Jewellery Categories
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     {CATEGORIES.slice(0, 8).map((cat) => (
                       <button
                         key={cat.id}
@@ -130,11 +137,11 @@ export default function Navbar() {
 
               {/* Collections Mega Dropdown */}
               {activeMegaMenu === 'collections' && (
-                <div className="absolute top-full -left-16 w-80 p-5 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-2xl backdrop-blur-2xl animate-fade-in">
+                <div className="absolute top-full -left-16 w-80 p-5 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-2xl backdrop-blur-2xl animate-fade-in z-50">
                   <div className="text-[9px] uppercase tracking-widest text-champagne mb-3 font-semibold pb-1.5 border-b border-champagne/15">
                     The HAMHOLD Collections
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     {COLLECTIONS.map((col) => (
                       <button
                         key={col.id}
@@ -174,29 +181,29 @@ export default function Navbar() {
               <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-champagne transition-all duration-300 group-hover:w-full" />
             </button>
 
+            {/* Our Story Nav Tab */}
             <button
-              onClick={() => {
-                const el = document.getElementById('gift-finder');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else navigateToCatalogue({ category: 'gifts' });
-              }}
+              onClick={navigateToOurStory}
               className="hover:text-champagne transition-colors duration-200 py-2 relative group"
             >
-              Gifts
+              Our Story
               <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-champagne transition-all duration-300 group-hover:w-full" />
             </button>
 
+            {/* Track Order Nav Tab */}
             <button
-              onClick={() => setIsAboutOpen(true)}
-              className="hover:text-champagne transition-colors duration-200 py-2 relative group"
+              onClick={() => navigateToTrackOrder()}
+              className="hover:text-champagne transition-colors duration-200 py-2 relative group flex items-center gap-1.5"
             >
-              About
+              <Truck className="w-3.5 h-3.5 text-champagne/70" />
+              <span>Track Order</span>
               <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-champagne transition-all duration-300 group-hover:w-full" />
             </button>
           </div>
 
-          {/* Right: Utility Actions (Search, Wishlist, Bag) */}
-          <div className="flex items-center space-x-3 sm:space-x-5">
+          {/* Right: Utility Actions (Search, Sign In / Account, Wishlist, My Bag) */}
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            {/* Search */}
             <button
               onClick={() => setIsSearchOpen(true)}
               aria-label="Search catalogue"
@@ -205,14 +212,86 @@ export default function Navbar() {
               <Search className="w-5 h-5 stroke-[1.75]" />
             </button>
 
-            <button
-              onClick={() => setIsAboutOpen(true)}
-              aria-label="Account atelier"
-              className="hidden sm:inline-flex p-2 text-ivory hover:text-champagne transition-colors duration-200 hover:scale-110 active:scale-95"
-            >
-              <User className="w-5 h-5 stroke-[1.75]" />
-            </button>
+            {/* Sign In / Account Menu */}
+            <div className="relative">
+              {customer?.isLoggedIn ? (
+                <div>
+                  <button
+                    onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
+                    className="flex items-center gap-2 py-1.5 px-3 rounded-full bg-champagne/15 hover:bg-champagne/25 border border-champagne/30 text-champagne text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm"
+                  >
+                    <User className="w-3.5 h-3.5" />
+                    <span className="max-w-[100px] truncate">
+                      Welcome, {customer.name.split(' ')[0]}
+                    </span>
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
 
+                  {/* Account Dropdown */}
+                  {isAccountMenuOpen && (
+                    <div
+                      onMouseLeave={() => setIsAccountMenuOpen(false)}
+                      className="absolute right-0 top-full mt-2 w-56 p-3 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-2xl backdrop-blur-2xl animate-fade-in z-50 space-y-1 text-xs"
+                    >
+                      <div className="px-3 py-2 border-b border-champagne/15 mb-1.5">
+                        <div className="font-semibold text-ivory truncate">{customer.name}</div>
+                        <div className="text-[10px] text-ivory-muted truncate">{customer.contact}</div>
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          setIsAccountMenuOpen(false);
+                          navigateToOrders();
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-champagne/15 hover:text-champagne transition-colors flex items-center justify-between text-ivory"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Package className="w-4 h-4 text-champagne" />
+                          My Orders
+                        </span>
+                        <span className="text-[10px] font-mono font-bold text-champagne bg-champagne/15 px-1.5 py-0.5 rounded">
+                          {orders.length}
+                        </span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setIsAccountMenuOpen(false);
+                          navigateToTrackOrder();
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-champagne/15 hover:text-champagne transition-colors flex items-center gap-2 text-ivory"
+                      >
+                        <Truck className="w-4 h-4 text-champagne" />
+                        Track Order
+                      </button>
+
+                      <div className="border-t border-champagne/15 pt-1 mt-1">
+                        <button
+                          onClick={() => {
+                            setIsAccountMenuOpen(false);
+                            signOutCustomer();
+                          }}
+                          className="w-full text-left px-3 py-2 rounded-lg hover:bg-red-500/15 hover:text-red-400 transition-colors flex items-center gap-2 text-ivory-muted"
+                        >
+                          <LogOut className="w-4 h-4 text-red-400" />
+                          Sign Out
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="hidden sm:inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-full bg-obsidian-surface hover:bg-champagne hover:text-obsidian border border-champagne/30 text-champagne text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm"
+                >
+                  <User className="w-3.5 h-3.5" />
+                  <span>Sign In</span>
+                </button>
+              )}
+            </div>
+
+            {/* Wishlist */}
             <button
               onClick={() => setIsWishlistOpen(true)}
               aria-label="Wishlist"
@@ -220,20 +299,21 @@ export default function Navbar() {
             >
               <Heart className="w-5 h-5 stroke-[1.75]" />
               {wishlist.length > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 bg-champagne text-obsidian text-[10px] font-bold rounded-full flex items-center justify-center">
+                <span className="absolute top-1 right-1 w-4 h-4 bg-champagne text-obsidian text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
                   {wishlist.length}
                 </span>
               )}
             </button>
 
+            {/* My Bag */}
             <button
               onClick={() => setIsCartOpen(true)}
-              aria-label="Shopping Bag"
+              aria-label="My Bag"
               className="p-2 text-ivory hover:text-champagne transition-colors duration-200 relative hover:scale-110 active:scale-95"
             >
               <ShoppingBag className="w-5 h-5 stroke-[1.75]" />
               {cartCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 bg-champagne text-obsidian text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse">
+                <span className="absolute top-1 right-1 w-4 h-4 bg-champagne text-obsidian text-[10px] font-bold rounded-full flex items-center justify-center animate-pulse shadow-sm">
                   {cartCount}
                 </span>
               )}

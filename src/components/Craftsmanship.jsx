@@ -37,54 +37,78 @@ export default function Craftsmanship() {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-obsidian border-t border-champagne/15 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-espresso/30 rounded-full blur-[120px] pointer-events-none" />
+    <section className="py-24 md:py-36 bg-obsidian border-t border-champagne/15 relative overflow-hidden">
+      {/* 1. Full-Width Background Video 3 (~90% visual visibility, sharp and clear) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover object-center opacity-90 filter contrast-105 brightness-95"
+        >
+          <source src="/Video/Video%20(3).mp4" type="video/mp4" />
+        </video>
+
+        {/* Lightweight translucent overlay ensuring 90% video visibility while keeping text crisp */}
+        <div className="absolute inset-0 bg-obsidian/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(11,11,12,0.45)_95%)] pointer-events-none" />
+
+        {/* Soft edge seam transitions preventing video from spilling into sections above or below */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,12,1)_0%,transparent_10%,transparent_90%,rgba(11,11,12,1)_100%)] pointer-events-none" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-champagne font-medium block mb-2">
-            The Atelier Standard
-          </span>
+        <div className="text-center max-w-2xl mx-auto mb-14 md:mb-18 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-obsidian/70 border border-champagne/30 text-champagne text-[10px] md:text-xs uppercase tracking-[0.25em] font-medium mb-3 backdrop-blur-md">
+            <span>The Atelier Standard</span>
+          </div>
           <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-ivory tracking-[0.03em] font-normal mb-4">
             <NeonTypewriterText text="CRAFTED WITH INTENTION." />
           </h2>
-          <p className="text-ivory-muted text-xs sm:text-sm font-sans font-light leading-relaxed">
+          <p className="text-ivory-soft text-xs sm:text-sm font-sans font-light leading-relaxed max-w-xl mx-auto bg-obsidian/40 backdrop-blur-sm p-2.5 rounded-lg border border-champagne/15">
             The bridge between centuries of classical goldsmithing knowledge and modern precision fine jewellery engineering.
           </p>
         </div>
 
-        {/* 5 Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {/* 5 Steps: Glassmorphic translucent cards floating over Video 3 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
           {steps.map((st) => {
             const Icon = st.icon;
             return (
               <div
                 key={st.num}
-                className="group relative p-6 rounded-xl bg-obsidian-card/60 hover:bg-obsidian-light/90 border border-champagne/15 hover:border-champagne/60 hover:shadow-[0_0_25px_rgba(214,194,154,0.25)] transform hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between overflow-hidden"
+                className="group relative p-5 md:p-6 rounded-2xl bg-obsidian/30 hover:bg-obsidian/50 border border-champagne/25 hover:border-champagne/60 hover:shadow-[0_15px_35px_rgba(0,0,0,0.7),0_0_25px_rgba(214,194,154,0.25)] transform hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between overflow-hidden backdrop-blur-sm shadow-luxury"
+                style={{
+                  transform: 'perspective(1000px)',
+                  transformStyle: 'preserve-3d'
+                }}
               >
                 {/* Subtle gold ambient glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-b from-champagne/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
+                <div className="absolute inset-0 bg-gradient-to-b from-champagne/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+
                 <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="font-serif-luxury text-2xl text-champagne font-light">
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-serif-luxury text-2xl text-champagne font-light drop-shadow">
                       {st.num}
                     </span>
-                    <div className="w-10 h-10 rounded-full bg-champagne/10 border border-champagne/20 flex items-center justify-center text-champagne group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 rounded-full bg-obsidian/60 border border-champagne/30 flex items-center justify-center text-champagne group-hover:scale-110 group-hover:bg-champagne group-hover:text-obsidian transition-all duration-300 shadow-sm backdrop-blur-md">
                       <Icon className="w-5 h-5 stroke-[1.5]" />
                     </div>
                   </div>
-                  <h3 className="font-serif-luxury text-lg text-ivory mb-2.5 font-normal">
+                  <h3 className="font-serif-luxury text-lg text-ivory mb-2 font-normal drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                     {st.title}
                   </h3>
-                  <p className="text-ivory-muted/80 text-xs font-sans font-light leading-relaxed">
+                  <p className="text-ivory-soft text-xs font-sans font-light leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                     {st.desc}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-champagne/10 text-[9px] uppercase tracking-widest text-champagne/60 font-mono">
-                  Atelier HAMHOLD
+                <div className="mt-5 pt-3 border-t border-champagne/15 text-[9px] uppercase tracking-widest text-champagne/80 font-mono flex items-center justify-between">
+                  <span>Atelier HAMHOLD</span>
+                  <span className="text-[10px] text-champagne/60">Stage {st.num}</span>
                 </div>
               </div>
             );

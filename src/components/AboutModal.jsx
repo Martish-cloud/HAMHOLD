@@ -55,7 +55,7 @@ export default function AboutModal() {
                 HAMHOLD is an independent luxury fine jewellery atelier dedicated to contemporary elegance, architectural discipline, and enduring emotional significance. Our aesthetic direction — the <em>Midnight Atelier</em> — moves away from generic luxury palettes, embracing the cinematic contrast of obsidian, warm ivory, and deep champagne tones.
               </p>
               <p>
-                Every ring, necklace, cuff, and kada in our 37-piece demo catalogue is conceived not as transient adornment, but as an heirloom engineered structurally to last generations. We work exclusively with certified 18K solid gold, 950 platinum, and naturally graded gemstones.
+                Every ring, necklace, cuff, and kada in our 37-piece atelier catalogue is conceived not as transient adornment, but as an heirloom engineered structurally to last generations. We work exclusively with certified 18K solid gold, 950 platinum, and naturally graded gemstones.
               </p>
             </div>
           </div>

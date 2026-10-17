@@ -283,11 +283,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Legal & Demo Notice */}
+        {/* Bottom Legal Notice */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-[11px] text-ivory-muted/70 gap-4">
           <p>© {new Date().getFullYear()} HAMHOLD. All rights reserved. Crafted to hold forever.</p>
           <div className="flex items-center gap-4 text-[10px] tracking-wider uppercase">
-            <span>Client Demonstration Preview</span>
+            <span>The Midnight Atelier Experience</span>
             <span>•</span>
             <span>100% BIS Hallmarked Standards</span>
             <span>•</span>

@@ -26,6 +26,11 @@ import FloatingJewellerySearch from './components/FloatingJewellerySearch';
 import GlobalWatermark from './components/GlobalWatermark';
 import AboutModal from './components/AboutModal';
 import ContactModal from './components/ContactModal';
+import AuthModal from './components/AuthModal';
+import CheckoutView from './components/CheckoutView';
+import TrackOrderView from './components/TrackOrderView';
+import OurStoryView from './components/OurStoryView';
+import MyOrdersView from './components/MyOrdersView';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -50,9 +55,12 @@ export default function App() {
 
       {/* Main View Router */}
       <main>
-        {activeView === 'catalogue' ? (
-          <ProductListingPage />
-        ) : (
+        {activeView === 'catalogue' && <ProductListingPage />}
+        {activeView === 'checkout' && <CheckoutView />}
+        {activeView === 'track-order' && <TrackOrderView />}
+        {activeView === 'story' && <OurStoryView />}
+        {activeView === 'orders' && <MyOrdersView />}
+        {(!activeView || activeView === 'home') && (
           <>
             {/* 1. Primary Hero: Women's Brand Ambassador Campaign */}
             <EditorialCampaign />
@@ -111,6 +119,7 @@ export default function App() {
       <WishlistDrawer />
       <AboutModal />
       <ContactModal />
+      <AuthModal />
     </div>
   );
 }

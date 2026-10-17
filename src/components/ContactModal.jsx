@@ -85,7 +85,7 @@ export default function ContactModal() {
             </div>
           </div>
 
-          {/* Quick Demo Inquiry Form */}
+          {/* Concierge Inquiry Form */}
           {isSent ? (
             <div className="text-center py-8 bg-obsidian-card rounded-xl border border-champagne/25 p-6">
               <Check className="w-8 h-8 text-champagne mx-auto mb-2" />

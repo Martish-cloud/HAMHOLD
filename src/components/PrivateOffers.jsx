@@ -26,7 +26,7 @@ export default function PrivateOffers() {
             Curated pieces. Exclusive privileges.
           </p>
           <span className="inline-block mt-2 text-[9px] uppercase tracking-[0.25em] text-champagne/60 font-medium font-sans">
-            Private Edit — Demo Collection
+            Private Edit — Atelier Collection
           </span>
         </div>
 
