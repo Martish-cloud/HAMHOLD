@@ -298,7 +298,7 @@ export default function CartDrawer() {
             <div className="pt-2 space-y-2">
               <button
                 onClick={navigateToCheckout}
-                className="w-full py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-2"
+                className="btn-3d w-full py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-2"
               >
                 <span>PROCEED TO CHECKOUT</span>
                 <ArrowRight className="w-4 h-4" />

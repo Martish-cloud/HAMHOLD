@@ -121,7 +121,7 @@ export default function DeliveryChecker({ compact = false, onSelectLocation = nu
         {/* Check Button */}
         <button
           type="submit"
-          className="w-full py-2.5 rounded-lg bg-champagne hover:bg-champagne-light text-obsidian text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-glow flex items-center justify-center gap-2"
+          className="btn-3d w-full py-2.5 rounded-lg bg-champagne hover:bg-champagne-light text-obsidian text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-glow flex items-center justify-center gap-2"
         >
           <span>Check Availability</span>
           <ArrowRight className="w-3.5 h-3.5" />

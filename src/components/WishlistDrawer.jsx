@@ -131,7 +131,7 @@ export default function WishlistDrawer() {
                     </span>
                     <button
                       onClick={() => moveWishlistToBag(prod)}
-                      className="px-3.5 py-1.5 rounded-lg bg-champagne/15 hover:bg-champagne text-champagne hover:text-obsidian text-[11px] font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-champagne/30 shadow-sm"
+                      className="btn-3d-secondary px-3.5 py-1.5 rounded-lg bg-champagne/15 hover:bg-champagne text-champagne hover:text-obsidian text-[11px] font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-champagne/30 shadow-sm"
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />
                       <span>Move To Bag</span>
@@ -151,7 +151,7 @@ export default function WishlistDrawer() {
                 setIsWishlistOpen(false);
                 navigateToCatalogue();
               }}
-              className="w-full py-3.5 rounded-full border border-champagne/30 text-ivory hover:text-champagne hover:border-champagne text-xs uppercase tracking-widest font-semibold transition-all flex items-center justify-center gap-2"
+              className="btn-3d-secondary w-full py-3.5 rounded-full border border-champagne/30 text-ivory hover:text-champagne hover:border-champagne text-xs uppercase tracking-widest font-semibold transition-all flex items-center justify-center gap-2"
             >
               <span>EXPLORE MORE JEWELLERY</span>
               <ArrowRight className="w-4 h-4" />

@@ -100,8 +100,8 @@ export default function CollectionsSection() {
                 onClick={() => setActiveCollectionId(col.id)}
                 className={`px-5 sm:px-7 py-3 rounded-full text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 whitespace-nowrap ${
                   isActive
-                    ? 'bg-champagne text-obsidian shadow-glow'
-                    : 'bg-obsidian-surface/60 text-ivory-soft hover:text-champagne hover:bg-obsidian-light border border-champagne/15'
+                    ? 'btn-3d bg-champagne text-obsidian shadow-glow font-semibold'
+                    : 'btn-3d-secondary bg-obsidian-surface/60 text-ivory-soft hover:text-champagne hover:bg-obsidian-light border border-champagne/15'
                 }`}
               >
                 {col.name}
@@ -113,7 +113,7 @@ export default function CollectionsSection() {
         {/* Active Collection Editorial Showcase */}
         <div
           ref={showcaseParallaxRef}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-obsidian-card/70 border border-champagne/20 rounded-2xl p-6 sm:p-10 md:p-12 shadow-2xl backdrop-blur-md will-change-transform"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-obsidian-card/75 border border-champagne/20 rounded-2xl p-6 sm:p-10 md:p-12 shadow-2xl backdrop-blur-md will-change-transform"
         >
           {/* Left: Collection Story & CTA */}
           <div className="lg:col-span-5 flex flex-col justify-between">
@@ -136,7 +136,7 @@ export default function CollectionsSection() {
             <button
               onClick={() => navigateToCatalogue({ collection: currentCollection.id })}
               data-cursor="explore"
-              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-champagne/15 hover:bg-champagne text-champagne hover:text-obsidian border border-champagne/30 text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 w-fit group"
+              className="btn-3d inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 w-fit group shadow-glow"
             >
               <span>EXPLORE {currentCollection.name.toUpperCase()}</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -154,7 +154,7 @@ export default function CollectionsSection() {
                   onClick={() => scroll('left')}
                   disabled={!canScrollLeft}
                   aria-label="Previous piece"
-                  className="w-8 h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
+                  className="btn-3d-secondary w-8 h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
@@ -162,7 +162,7 @@ export default function CollectionsSection() {
                   onClick={() => scroll('right')}
                   disabled={!canScrollRight}
                   aria-label="Next piece"
-                  className="w-8 h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
+                  className="btn-3d-secondary w-8 h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -179,14 +179,14 @@ export default function CollectionsSection() {
                   key={prod.id}
                   onClick={() => setSelectedProduct(prod)}
                   data-cursor="view"
-                  className="card-hover-lift-fill flex-shrink-0 w-48 sm:w-56 snap-start group p-4 rounded-xl bg-obsidian-surface/85 hover:bg-obsidian-surface border border-champagne/15 hover:border-champagne/50 transition-all duration-350 cursor-pointer flex flex-col justify-between hover:shadow-luxury-hover will-change-transform"
+                  className="card-hover-lift-fill preserve-3d flex-shrink-0 w-48 sm:w-56 snap-start group p-4 rounded-xl bg-obsidian-surface/85 hover:bg-obsidian-surface border border-champagne/15 hover:border-champagne/50 transition-all duration-350 cursor-pointer flex flex-col justify-between hover:shadow-luxury-hover will-change-transform"
                 >
                   {/* Warm Charcoal / Bronze Luxury Background Fill Transition */}
                   <div className="pointer-events-none absolute inset-0 z-0 rounded-xl bg-gradient-to-br from-espresso-light/40 via-obsidian-card to-obsidian opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
                   <div className="pointer-events-none absolute inset-0 z-0 rounded-xl bg-radial-gradient from-champagne/[0.08] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
 
-                  {/* Product Image Container with Depth */}
-                  <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-3 bg-obsidian-card rounded-lg overflow-hidden border border-champagne/15 group-hover:border-champagne/40 transition-colors duration-350">
+                  {/* Product Image Container with 3D Depth */}
+                  <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-3 bg-obsidian-card rounded-lg overflow-hidden border border-champagne/15 group-hover:border-champagne/40 transition-colors duration-350 transform group-hover:translate-z-10">
                     <img
                       src={prod.primaryImage}
                       alt={prod.name}
@@ -199,7 +199,7 @@ export default function CollectionsSection() {
                       }`}
                     />
                   </div>
-                  <div className="relative z-10">
+                  <div className="relative z-10 transform group-hover:translate-z-10">
                     <h4 className="font-serif-luxury text-sm text-ivory line-clamp-1 group-hover:text-champagne transition-colors duration-300">
                       {prod.name}
                     </h4>

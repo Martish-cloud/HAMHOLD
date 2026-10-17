@@ -73,23 +73,25 @@ export default function BrandStory() {
             </div>
           </div>
 
-          {/* Right Highlight: Translucent Motto Card floating over Video 2 */}
+          {/* Right Highlight: Translucent Motto Card floating over Video 2 with 3D Depth */}
           <div className="lg:col-span-5">
-            <div className="p-6 sm:p-8 rounded-2xl bg-obsidian/30 hover:bg-obsidian/50 border border-champagne/25 hover:border-champagne/55 backdrop-blur-sm shadow-luxury relative overflow-hidden group transition-all duration-500">
-              <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-champagne/10 blur-2xl pointer-events-none" />
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-champagne font-medium">
-                  THE HAMHOLD ATELIER MOTTO
-                </span>
-                <span className="text-champagne/70 text-xs">❖</span>
+            <div className="card-hover-lift-fill preserve-3d p-6 sm:p-8 rounded-2xl bg-obsidian/30 hover:bg-obsidian/55 border border-champagne/25 hover:border-champagne/60 backdrop-blur-sm shadow-luxury relative overflow-hidden group transition-all duration-500 will-change-transform">
+              <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-champagne/15 blur-2xl pointer-events-none" />
+              <div className="transform group-hover:translate-z-10 transition-transform duration-300">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-champagne font-medium">
+                    THE HAMHOLD ATELIER MOTTO
+                  </span>
+                  <span className="text-champagne/70 text-xs">❖</span>
+                </div>
+                <p className="font-serif-luxury text-2xl sm:text-3xl text-gold-gradient italic leading-relaxed mb-4 drop-shadow">
+                  "Crafted to Hold Forever."
+                </p>
+                <div className="h-[1px] w-16 bg-champagne/30 mb-4" />
+                <p className="text-xs sm:text-sm text-ivory-soft font-sans font-light leading-relaxed drop-shadow">
+                  Pieces engineered structurally to last generations, holding their emotional significance intact.
+                </p>
               </div>
-              <p className="font-serif-luxury text-2xl sm:text-3xl text-gold-gradient italic leading-relaxed mb-4 drop-shadow">
-                "Crafted to Hold Forever."
-              </p>
-              <div className="h-[1px] w-16 bg-champagne/30 mb-4" />
-              <p className="text-xs sm:text-sm text-ivory-soft font-sans font-light leading-relaxed drop-shadow">
-                Pieces engineered structurally to last generations, holding their emotional significance intact.
-              </p>
             </div>
           </div>
         </div>

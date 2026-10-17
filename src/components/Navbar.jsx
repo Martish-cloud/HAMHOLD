@@ -98,7 +98,7 @@ export default function Navbar() {
 
               {/* Mega Dropdown */}
               {activeMegaMenu === 'jewellery' && (
-                <div className="absolute top-full -left-12 w-64 p-4 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-2xl backdrop-blur-2xl animate-fade-in z-50">
+                <div className="absolute top-full -left-12 w-64 p-4 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(214,194,154,0.15)] backdrop-blur-2xl animate-fade-in z-50">
                   <div className="text-[9px] uppercase tracking-widest text-champagne mb-3 font-semibold pb-1.5 border-b border-champagne/15">
                     Fine Jewellery Categories
                   </div>
@@ -137,7 +137,7 @@ export default function Navbar() {
 
               {/* Collections Mega Dropdown */}
               {activeMegaMenu === 'collections' && (
-                <div className="absolute top-full -left-16 w-80 p-5 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-2xl backdrop-blur-2xl animate-fade-in z-50">
+                <div className="absolute top-full -left-16 w-80 p-5 rounded-xl bg-obsidian-surface/98 border border-champagne/25 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(214,194,154,0.15)] backdrop-blur-2xl animate-fade-in z-50">
                   <div className="text-[9px] uppercase tracking-widest text-champagne mb-3 font-semibold pb-1.5 border-b border-champagne/15">
                     The HAMHOLD Collections
                   </div>
@@ -283,7 +283,7 @@ export default function Navbar() {
               ) : (
                 <button
                   onClick={() => setIsAuthModalOpen(true)}
-                  className="hidden sm:inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-full bg-obsidian-surface hover:bg-champagne hover:text-obsidian border border-champagne/30 text-champagne text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm"
+                  className="btn-3d-secondary hidden sm:inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-full bg-obsidian-surface hover:bg-champagne hover:text-obsidian border border-champagne/30 text-champagne text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm"
                 >
                   <User className="w-3.5 h-3.5" />
                   <span>Sign In</span>

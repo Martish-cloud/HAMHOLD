@@ -1,59 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CATEGORIES } from '../data/products';
 import { useShop } from '../context/ShopContext';
 import { ArrowRight } from 'lucide-react';
 import { GhostInterleapText } from './TextAnimations';
 import { useParallax } from '../hooks/useParallax';
+import { use3DTilt } from '../hooks/use3DTilt';
 
 function CategoryCard({ cat, onNavigate }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0, glareX: 50, glareY: 50, isHovered: false });
   const imageParallaxRef = useParallax({ speed: 0.06, maxOffset: 10 });
-
-  const handleMouseMove = (e) => {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    const rotX = (0.5 - y) * 8;
-    const rotY = (x - 0.5) * 8;
-    setTilt({ x: rotX, y: rotY, glareX: x * 100, glareY: y * 100, isHovered: true });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0, glareX: 50, glareY: 50, isHovered: false });
-  };
+  const { tiltState, tiltStyle, glareStyle, bind } = use3DTilt({
+    maxTilt: 8,
+    perspective: 1000,
+    scale: 1.03,
+    elevationY: -8,
+    translateZ: 14,
+    speed: 400,
+    glare: true
+  });
 
   return (
     <div
       onClick={() => onNavigate({ category: cat.id })}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       data-cursor="explore"
-      style={{
-        transform: tilt.isHovered
-          ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px) translateZ(10px)`
-          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) translateZ(0px)',
-        transformStyle: 'preserve-3d',
-        transition: tilt.isHovered ? 'transform 0.12s ease-out' : 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)'
-      }}
-      className="card-hover-lift-fill flex-shrink-0 w-44 sm:w-52 md:w-auto group relative flex flex-col items-center justify-between p-4 sm:p-5 rounded-2xl bg-obsidian-card/75 hover:bg-obsidian-card border border-champagne/15 hover:border-champagne/50 transition-all duration-350 cursor-pointer shadow-luxury hover:shadow-luxury-hover overflow-hidden will-change-transform"
+      style={tiltStyle}
+      {...bind}
+      className="card-hover-lift-fill preserve-3d flex-shrink-0 w-44 sm:w-52 md:w-auto group relative flex flex-col items-center justify-between p-4 sm:p-5 rounded-2xl bg-obsidian-card/75 hover:bg-obsidian-card border border-champagne/15 hover:border-champagne/50 transition-all duration-350 cursor-pointer shadow-luxury hover:shadow-luxury-hover overflow-hidden will-change-transform"
     >
       {/* Warm Charcoal / Bronze-Tinted Luxury Fill Transition */}
       <div className="pointer-events-none absolute inset-0 z-0 rounded-2xl bg-gradient-to-br from-espresso-light/50 via-obsidian-surface to-obsidian opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
       <div className="pointer-events-none absolute inset-0 z-0 rounded-2xl bg-radial-gradient from-champagne/[0.08] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
 
       {/* Specular Glare Overlay */}
-      {tilt.isHovered && (
+      {glareStyle && (
         <div
-          className="pointer-events-none absolute inset-0 z-30 transition-opacity duration-300 rounded-2xl opacity-70"
-          style={{
-            background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(214, 194, 154, 0.22) 0%, rgba(214, 194, 154, 0.04) 45%, transparent 70%)`
-          }}
+          className="pointer-events-none absolute inset-0 z-30 rounded-2xl"
+          style={glareStyle}
         />
       )}
 
-      {/* Category Image Area with Integrated Circular Decorative Rings & Ambient Glow */}
-      <div className="relative z-10 w-full aspect-square max-w-[140px] sm:max-w-[160px] mb-3.5 flex items-center justify-center">
+      {/* Category Image Area with Integrated Circular Decorative Rings & Ambient Glow with 3D Depth */}
+      <div
+        style={{ transform: tiltState.isHovered ? 'translateZ(20px)' : 'translateZ(0px)' }}
+        className="relative z-10 w-full aspect-square max-w-[140px] sm:max-w-[160px] mb-3.5 flex items-center justify-center transition-transform duration-300"
+      >
         {/* Decorative Circular Outer Ring */}
         <div className="absolute inset-0 rounded-full border border-champagne/25 group-hover:border-champagne/50 transition-colors duration-500 pointer-events-none" />
 
@@ -82,8 +71,11 @@ function CategoryCard({ cat, onNavigate }) {
         </div>
       </div>
 
-      {/* Category Name & Discover action */}
-      <div className="text-center relative z-10 w-full mt-auto">
+      {/* Category Name & Discover action with 3D Layering */}
+      <div
+        style={{ transform: tiltState.isHovered ? 'translateZ(15px)' : 'translateZ(0px)' }}
+        className="text-center relative z-10 w-full mt-auto transition-transform duration-300"
+      >
         <h3 className="font-serif-luxury text-sm sm:text-base text-ivory group-hover:text-champagne transition-colors duration-300 line-clamp-1">
           {cat.name}
         </h3>

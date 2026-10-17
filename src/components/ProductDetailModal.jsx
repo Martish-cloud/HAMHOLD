@@ -224,18 +224,18 @@ export default function ProductDetailModal() {
               </div>
             </div>
 
-            {/* CTAs */}
+            {/* CTAs with 3D Micro-interactions */}
             <div className="pt-6 border-t border-champagne/15 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => addToCart(selectedProduct, currentSize, 1)}
-                className="flex-1 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 shadow-glow"
+                className="btn-3d flex-1 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 shadow-glow"
               >
                 ADD TO BAG
               </button>
 
               <button
                 onClick={handleBuyNow}
-                className="flex-1 py-4 rounded-full bg-obsidian-card hover:bg-obsidian-surface border border-champagne/40 text-ivory hover:text-champagne text-xs tracking-[0.2em] uppercase font-semibold transition-all"
+                className="btn-3d-secondary flex-1 py-4 rounded-full bg-obsidian-card hover:bg-obsidian-surface border border-champagne/40 text-ivory hover:text-champagne text-xs tracking-[0.2em] uppercase font-semibold transition-all"
               >
                 BUY NOW
               </button>
@@ -243,7 +243,7 @@ export default function ProductDetailModal() {
               <button
                 onClick={() => toggleWishlist(selectedProduct.id)}
                 aria-label="Wishlist"
-                className="w-12 h-12 rounded-full border border-champagne/30 flex items-center justify-center text-ivory hover:text-champagne hover:border-champagne transition-all shrink-0 self-center sm:self-auto"
+                className="btn-3d-secondary w-12 h-12 rounded-full border border-champagne/30 flex items-center justify-center text-ivory hover:text-champagne hover:border-champagne transition-all shrink-0 self-center sm:self-auto"
               >
                 <Heart
                   className={`w-5 h-5 ${

@@ -107,7 +107,7 @@ export default function TheHamholdEdit() {
               onClick={() => handleSwipe('left')}
               disabled={!canScrollLeft}
               aria-label="Previous editorial card"
-              className={`w-11 h-11 rounded-full border border-champagne/30 flex items-center justify-center transition-all duration-300 ${
+              className={`btn-3d-secondary w-11 h-11 rounded-full border border-champagne/30 flex items-center justify-center transition-all duration-300 ${
                 canScrollLeft
                   ? 'bg-obsidian-surface hover:bg-champagne hover:text-obsidian text-champagne hover:scale-105 active:scale-95 shadow-luxury'
                   : 'bg-obsidian/30 text-champagne/30 border-champagne/10 cursor-not-allowed opacity-40'
@@ -119,7 +119,7 @@ export default function TheHamholdEdit() {
               onClick={() => handleSwipe('right')}
               disabled={!canScrollRight}
               aria-label="Next editorial card"
-              className={`w-11 h-11 rounded-full border border-champagne/30 flex items-center justify-center transition-all duration-300 ${
+              className={`btn-3d-secondary w-11 h-11 rounded-full border border-champagne/30 flex items-center justify-center transition-all duration-300 ${
                 canScrollRight
                   ? 'bg-obsidian-surface hover:bg-champagne hover:text-obsidian text-champagne hover:scale-105 active:scale-95 shadow-luxury'
                   : 'bg-obsidian/30 text-champagne/30 border-champagne/10 cursor-not-allowed opacity-40'
@@ -141,7 +141,7 @@ export default function TheHamholdEdit() {
               <div
                 onClick={() => setActiveLightboxIndex(index)}
                 data-cursor="view"
-                className="group relative flex-1 min-h-[420px] sm:min-h-[480px] lg:min-h-[580px] rounded-2xl overflow-hidden bg-obsidian-card border border-champagne/20 hover:border-champagne/50 transition-all duration-700 cursor-pointer shadow-luxury hover:shadow-luxury-hover flex flex-col justify-end"
+                className="card-hover-lift-fill preserve-3d group relative flex-1 min-h-[420px] sm:min-h-[480px] lg:min-h-[580px] rounded-2xl overflow-hidden bg-obsidian-card border border-champagne/20 hover:border-champagne/55 transition-all duration-700 cursor-pointer shadow-luxury hover:shadow-luxury-hover flex flex-col justify-end will-change-transform"
               >
                 <picture className="absolute inset-0 w-full h-full block">
                   {imgItem.srcMobile && (
@@ -155,7 +155,7 @@ export default function TheHamholdEdit() {
                     alt={imgItem.alt}
                     loading="lazy"
                     decoding="async"
-                    className={`w-full h-full object-cover ${imgItem.focal} transition-transform duration-1000 ease-out group-hover:scale-[1.03]`}
+                    className={`w-full h-full object-cover ${imgItem.focal} transition-transform duration-1000 ease-out group-hover:scale-[1.04]`}
                   />
                 </picture>
 
@@ -163,23 +163,26 @@ export default function TheHamholdEdit() {
                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent opacity-85 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-r from-obsidian/30 via-transparent to-transparent opacity-50 pointer-events-none" />
 
-                {/* Top Tag */}
-                <div className="absolute top-5 left-5 z-10">
-                  <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.25em] font-medium bg-obsidian/80 text-champagne border border-champagne/30 backdrop-blur-md">
+                {/* Top Tag with 3D Depth */}
+                <div className="absolute top-5 left-5 z-10 transform group-hover:translate-z-20 transition-transform duration-300">
+                  <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.25em] font-medium bg-obsidian/80 text-champagne border border-champagne/30 backdrop-blur-md shadow-sm">
                     {imgItem.tag}
                   </span>
                 </div>
 
-                {/* Centered Circular Luxury VIEW Button on Hover */}
+                {/* Centered Circular Luxury VIEW Button with 3D Float on Hover */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                  <div className="w-20 h-20 rounded-full border border-champagne/60 bg-obsidian/80 backdrop-blur-md flex flex-col items-center justify-center text-champagne opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 shadow-luxury">
+                  <div
+                    style={{ transform: 'translateZ(36px)' }}
+                    className="w-20 h-20 rounded-full border border-champagne/60 bg-obsidian/85 backdrop-blur-md flex flex-col items-center justify-center text-champagne opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 shadow-luxury"
+                  >
                     <Eye className="w-5 h-5 mb-0.5 text-champagne" />
                     <span className="text-[10px] tracking-[0.25em] font-medium uppercase text-ivory">VIEW</span>
                   </div>
                 </div>
 
-                {/* Bottom Editorial Caption */}
-                <div className="relative z-10 p-6 sm:p-8">
+                {/* Bottom Editorial Caption with 3D Depth */}
+                <div className="relative z-10 p-6 sm:p-8 transform group-hover:translate-z-10 transition-transform duration-300">
                   <span className="font-serif-luxury text-lg sm:text-2xl text-ivory block font-normal group-hover:text-champagne transition-colors duration-300">
                     {imgItem.title}
                   </span>
@@ -197,7 +200,7 @@ export default function TheHamholdEdit() {
           <button
             onClick={() => navigateToCatalogue({ gender: 'women' })}
             data-cursor="explore"
-            className="inline-flex items-center gap-3 px-9 py-4 rounded-full bg-obsidian-surface hover:bg-champagne hover:text-obsidian border border-champagne/35 text-ivory text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-luxury group backdrop-blur-md"
+            className="btn-3d inline-flex items-center gap-3 px-9 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow group"
           >
             <span>DISCOVER THE HIGH JEWELLERY EDIT</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

@@ -63,7 +63,7 @@ export default function ForHimSection() {
                 <button
                   onClick={() => navigateToCatalogue({ gender: 'men' })}
                   data-cursor="explore"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow group"
+                  className="btn-3d w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow group"
                 >
                   <span>EXPLORE MEN'S ATELIER</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

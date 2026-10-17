@@ -80,25 +80,25 @@ export default function Craftsmanship() {
             return (
               <div
                 key={st.num}
-                className="group relative p-5 md:p-6 rounded-2xl bg-obsidian/30 hover:bg-obsidian/50 border border-champagne/25 hover:border-champagne/60 hover:shadow-[0_15px_35px_rgba(0,0,0,0.7),0_0_25px_rgba(214,194,154,0.25)] transform hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between overflow-hidden backdrop-blur-sm shadow-luxury"
+                className="card-hover-lift-fill preserve-3d group relative p-5 md:p-6 rounded-2xl bg-obsidian/30 hover:bg-obsidian/55 border border-champagne/25 hover:border-champagne/60 hover:shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_30px_rgba(214,194,154,0.25)] transition-all duration-400 flex flex-col justify-between overflow-hidden backdrop-blur-sm shadow-luxury will-change-transform"
                 style={{
                   transform: 'perspective(1000px)',
                   transformStyle: 'preserve-3d'
                 }}
               >
                 {/* Subtle gold ambient glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-b from-champagne/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-b from-champagne/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
 
-                <div>
+                <div className="transform group-hover:translate-z-10 transition-transform duration-300">
                   <div className="flex items-center justify-between mb-5">
-                    <span className="font-serif-luxury text-2xl text-champagne font-light drop-shadow">
+                    <span className="font-serif-luxury text-2xl text-champagne font-light drop-shadow transform group-hover:translate-z-20 transition-transform duration-300">
                       {st.num}
                     </span>
-                    <div className="w-10 h-10 rounded-full bg-obsidian/60 border border-champagne/30 flex items-center justify-center text-champagne group-hover:scale-110 group-hover:bg-champagne group-hover:text-obsidian transition-all duration-300 shadow-sm backdrop-blur-md">
+                    <div className="w-10 h-10 rounded-full bg-obsidian/60 border border-champagne/30 flex items-center justify-center text-champagne group-hover:scale-110 group-hover:bg-champagne group-hover:text-obsidian transition-all duration-300 shadow-sm backdrop-blur-md transform group-hover:translate-z-20">
                       <Icon className="w-5 h-5 stroke-[1.5]" />
                     </div>
                   </div>
-                  <h3 className="font-serif-luxury text-lg text-ivory mb-2 font-normal drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                  <h3 className="font-serif-luxury text-lg text-ivory mb-2 font-normal drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:text-champagne transition-colors duration-300">
                     {st.title}
                   </h3>
                   <p className="text-ivory-soft text-xs font-sans font-light leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">

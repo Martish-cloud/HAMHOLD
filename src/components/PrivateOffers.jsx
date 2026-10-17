@@ -33,7 +33,7 @@ export default function PrivateOffers() {
         {/* 2-Part Curated Offer Layout (Side by Side on Desktop, Stacked on Mobile) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           {/* Card 1: For Women — The Signature Edit */}
-          <div className="group relative rounded-2xl bg-gradient-radial from-espresso/40 via-obsidian-card to-obsidian border border-champagne/20 hover:border-champagne/45 transition-all duration-500 overflow-hidden shadow-luxury hover:shadow-luxury-hover flex flex-col justify-between">
+          <div className="card-hover-lift-fill preserve-3d group relative rounded-2xl bg-gradient-radial from-espresso/40 via-obsidian-card to-obsidian border border-champagne/20 hover:border-champagne/50 transition-all duration-500 overflow-hidden shadow-luxury hover:shadow-luxury-hover flex flex-col justify-between will-change-transform">
             {/* Top Image Banner with Atmospheric Vignette */}
             <div className="relative w-full h-64 sm:h-72 overflow-hidden">
               <picture className="w-full h-full block">
@@ -49,12 +49,12 @@ export default function PrivateOffers() {
                 />
               </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent" />
-              <div className="absolute top-4 left-4 z-10">
+              <div className="absolute top-4 left-4 z-10 transform group-hover:translate-z-20 transition-transform duration-300">
                 <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.25em] font-medium bg-obsidian/85 text-champagne border border-champagne/30 backdrop-blur-md">
                   For Her • 3-Piece Edit
                 </span>
               </div>
-              <div className="absolute top-4 right-4 z-10">
+              <div className="absolute top-4 right-4 z-10 transform group-hover:translate-z-20 transition-transform duration-300">
                 <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.2em] font-semibold bg-champagne text-obsidian shadow-glow">
                   Save ₹8,500
                 </span>
@@ -63,7 +63,7 @@ export default function PrivateOffers() {
 
             {/* Content Body */}
             <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-              <div>
+              <div className="transform group-hover:translate-z-10 transition-transform duration-300">
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-champagne/80 font-medium mb-1.5">
                   <Gem className="w-3.5 h-3.5 text-champagne" />
                   <span>The Signature Suite</span>
@@ -111,17 +111,17 @@ export default function PrivateOffers() {
                 <button
                   onClick={() => navigateToCatalogue({ gender: 'women' })}
                   data-cursor="explore"
-                  className="relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold border border-champagne hover:border-champagne-light transition-all duration-300 shadow-glow hover:shadow-[0_0_25px_rgba(214,194,154,0.4)] transform hover:-translate-y-1 active:translate-y-0 group/btn"
+                  className="btn-3d relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold border border-champagne hover:border-champagne-light transition-all duration-300 shadow-glow"
                 >
                   <span>SHOP WOMEN</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
             </div>
           </div>
 
           {/* Card 2: For Men — The Gentlemen's Edit */}
-          <div className="group relative rounded-2xl bg-gradient-radial from-espresso/40 via-obsidian-card to-obsidian border border-champagne/20 hover:border-champagne/45 transition-all duration-500 overflow-hidden shadow-luxury hover:shadow-luxury-hover flex flex-col justify-between">
+          <div className="card-hover-lift-fill preserve-3d group relative rounded-2xl bg-gradient-radial from-espresso/40 via-obsidian-card to-obsidian border border-champagne/20 hover:border-champagne/50 transition-all duration-500 overflow-hidden shadow-luxury hover:shadow-luxury-hover flex flex-col justify-between will-change-transform">
             {/* Top Image Banner with Atmospheric Vignette */}
             <div className="relative w-full h-64 sm:h-72 overflow-hidden">
               <img
@@ -134,12 +134,12 @@ export default function PrivateOffers() {
                 className="w-full h-full object-cover object-[50%_25%] transform transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent" />
-              <div className="absolute top-4 left-4 z-10">
+              <div className="absolute top-4 left-4 z-10 transform group-hover:translate-z-20 transition-transform duration-300">
                 <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.25em] font-medium bg-obsidian/85 text-champagne border border-champagne/30 backdrop-blur-md">
                   For Him • 3-Piece Edit
                 </span>
               </div>
-              <div className="absolute top-4 right-4 z-10">
+              <div className="absolute top-4 right-4 z-10 transform group-hover:translate-z-20 transition-transform duration-300">
                 <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.2em] font-semibold bg-champagne text-obsidian shadow-glow">
                   Save ₹10,000
                 </span>
@@ -148,7 +148,7 @@ export default function PrivateOffers() {
 
             {/* Content Body */}
             <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-              <div>
+              <div className="transform group-hover:translate-z-10 transition-transform duration-300">
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-champagne/80 font-medium mb-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-champagne" />
                   <span>The Sovereign Suite</span>
@@ -196,10 +196,10 @@ export default function PrivateOffers() {
                 <button
                   onClick={() => navigateToCatalogue({ gender: 'men' })}
                   data-cursor="explore"
-                  className="relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold border border-champagne hover:border-champagne-light transition-all duration-300 shadow-glow hover:shadow-[0_0_25px_rgba(214,194,154,0.4)] transform hover:-translate-y-1 active:translate-y-0 group/btn"
+                  className="btn-3d relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold border border-champagne hover:border-champagne-light transition-all duration-300 shadow-glow"
                 >
                   <span>SHOP MEN</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
             </div>

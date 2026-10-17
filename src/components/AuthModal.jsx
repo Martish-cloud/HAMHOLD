@@ -128,7 +128,7 @@ export default function AuthModal({ onSuccess = null }) {
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-widest uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-2 mt-4"
+              className="btn-3d w-full py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-widest uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-2 mt-4"
             >
               <span>Continue to Verification</span>
               <ArrowRight className="w-4 h-4" />
@@ -163,14 +163,14 @@ export default function AuthModal({ onSuccess = null }) {
               <button
                 type="button"
                 onClick={() => setStep('details')}
-                className="flex-1 py-3 rounded-full bg-obsidian-surface hover:bg-obsidian border border-champagne/25 text-ivory-soft text-xs uppercase tracking-wider font-medium transition-colors"
+                className="btn-3d-secondary flex-1 py-3 rounded-full bg-obsidian-surface hover:bg-obsidian border border-champagne/25 text-ivory-soft text-xs uppercase tracking-wider font-medium transition-colors"
               >
                 Change Details
               </button>
 
               <button
                 type="submit"
-                className="flex-1 py-3 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-wider uppercase font-semibold transition-all shadow-glow flex items-center justify-center gap-1.5"
+                className="btn-3d flex-1 py-3 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-wider uppercase font-semibold transition-all shadow-glow flex items-center justify-center gap-1.5"
               >
                 <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Verify &amp; Sign In</span>

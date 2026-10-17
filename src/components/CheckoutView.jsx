@@ -710,11 +710,11 @@ export default function CheckoutView() {
             </p>
           )}
 
-          {/* Place Order CTA */}
+          {/* Place Order CTA with 3D Micro-interactions */}
           <button
             type="button"
             onClick={handleProceedToPlaceOrder}
-            className="w-full py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-3"
+            className="btn-3d w-full py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-3"
           >
             <span>CONFIRM &amp; PLACE ORDER — {formatINR(finalPayableTotal)}</span>
             <ArrowRight className="w-4 h-4" />
@@ -724,7 +724,7 @@ export default function CheckoutView() {
         {/* Right Column: Order Summary & Item Snapshot (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           <div
-            className="p-6 rounded-2xl bg-obsidian-surface border border-champagne/20 shadow-luxury space-y-4 sticky top-24"
+            className="card-hover-lift-fill preserve-3d p-6 rounded-2xl bg-obsidian-surface border border-champagne/20 shadow-luxury space-y-4 sticky top-24"
             style={{
               transform: 'perspective(1000px)',
               transformStyle: 'preserve-3d'

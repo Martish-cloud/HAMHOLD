@@ -49,12 +49,12 @@ export default function Hero() {
             Contemporary fine jewellery, crafted for the moments you never want to forget. Sculpted in 18K solid gold, certified natural diamonds, and heirloom gemstones.
           </p>
 
-          {/* Action CTAs */}
+          {/* Action CTAs with 3D Micro-interactions */}
           <div className="flex flex-col sm:flex-row items-center justify-start gap-4 sm:gap-5">
             <button
               onClick={() => navigateToCatalogue()}
               data-cursor="explore"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-3 group"
+              className="btn-3d w-full sm:w-auto px-8 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-3 group"
             >
               <span>EXPLORE COLLECTION</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -62,23 +62,23 @@ export default function Hero() {
 
             <button
               onClick={() => setIsAboutOpen(true)}
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-obsidian/70 hover:bg-obsidian border border-champagne/40 text-ivory hover:text-champagne text-xs tracking-[0.22em] uppercase font-medium transition-all duration-300 backdrop-blur-md shadow-luxury"
+              className="btn-3d-secondary w-full sm:w-auto px-8 py-4 rounded-full bg-obsidian/75 hover:bg-obsidian border border-champagne/40 text-ivory hover:text-champagne text-xs tracking-[0.22em] uppercase font-medium transition-all duration-300 backdrop-blur-md shadow-luxury"
             >
               DISCOVER HAMHOLD
             </button>
           </div>
 
-          {/* Trust Highlights */}
+          {/* Trust Highlights with 3D Hover Depth */}
           <div className="mt-8 pt-6 border-t border-champagne/20 grid grid-cols-3 gap-4 max-w-lg text-left drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            <div>
+            <div className="p-2 rounded-lg transition-transform duration-300 hover:-translate-y-1">
               <span className="block font-serif-luxury text-xl md:text-2xl text-champagne font-medium">100%</span>
               <span className="text-[10px] md:text-xs text-ivory-muted uppercase tracking-wider">BIS Hallmarked</span>
             </div>
-            <div>
+            <div className="p-2 rounded-lg transition-transform duration-300 hover:-translate-y-1">
               <span className="block font-serif-luxury text-xl md:text-2xl text-champagne font-medium">37+</span>
               <span className="text-[10px] md:text-xs text-ivory-muted uppercase tracking-wider">Bespoke Pieces</span>
             </div>
-            <div>
+            <div className="p-2 rounded-lg transition-transform duration-300 hover:-translate-y-1">
               <span className="block font-serif-luxury text-xl md:text-2xl text-champagne font-medium">Insured</span>
               <span className="text-[10px] md:text-xs text-ivory-muted uppercase tracking-wider">Pan-India Delivery</span>
             </div>

@@ -62,7 +62,7 @@ export default function Footer() {
                   />
                   <button
                     type="submit"
-                    className="px-6 py-2.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs uppercase tracking-widest font-semibold transition-all shrink-0 flex items-center gap-1.5"
+                    className="btn-3d px-6 py-2.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs uppercase tracking-widest font-semibold transition-all shrink-0 flex items-center gap-1.5 shadow-glow"
                   >
                     <span>JOIN</span>
                     <ArrowRight className="w-3.5 h-3.5" />

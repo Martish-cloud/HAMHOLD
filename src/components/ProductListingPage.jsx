@@ -135,8 +135,8 @@ export default function ProductListingPage() {
               onClick={() => handleFilterChange('category', 'all')}
               className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium transition-all ${
                 category === 'all'
-                  ? 'bg-champagne text-obsidian font-semibold'
-                  : 'bg-obsidian-surface text-ivory-muted hover:text-champagne border border-champagne/15'
+                  ? 'btn-3d bg-champagne text-obsidian font-semibold shadow-glow'
+                  : 'btn-3d-secondary bg-obsidian-surface text-ivory-muted hover:text-champagne border border-champagne/15'
               }`}
             >
               All
@@ -147,8 +147,8 @@ export default function ProductListingPage() {
                 onClick={() => handleFilterChange('category', c.id)}
                 className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium transition-all whitespace-nowrap ${
                   category === c.id
-                    ? 'bg-champagne text-obsidian font-semibold'
-                    : 'bg-obsidian-surface text-ivory-muted hover:text-champagne border border-champagne/15'
+                    ? 'btn-3d bg-champagne text-obsidian font-semibold shadow-glow'
+                    : 'btn-3d-secondary bg-obsidian-surface text-ivory-muted hover:text-champagne border border-champagne/15'
                 }`}
               >
                 {c.name}
@@ -161,7 +161,7 @@ export default function ProductListingPage() {
             {/* Mobile Filter Button */}
             <button
               onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden flex-1 py-2.5 px-4 rounded-lg bg-obsidian-surface border border-champagne/20 text-ivory text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2"
+              className="btn-3d-secondary lg:hidden flex-1 py-2.5 px-4 rounded-lg bg-obsidian-surface border border-champagne/20 text-ivory text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2"
             >
               <Filter className="w-4 h-4 text-champagne" />
               <span>Filters {activeFiltersCount > 0 ? `(${activeFiltersCount})` : ''}</span>

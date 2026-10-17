@@ -76,8 +76,8 @@ export default function GiftFinder() {
                   onClick={() => setRecipient(btn.id)}
                   className={`px-4 sm:px-5 py-2 rounded-full text-xs uppercase tracking-wider font-medium transition-all ${
                     recipient === btn.id
-                      ? 'bg-champagne text-obsidian shadow-glow font-semibold'
-                      : 'bg-obsidian-surface text-ivory-soft hover:text-champagne border border-champagne/20'
+                      ? 'btn-3d bg-champagne text-obsidian shadow-glow font-semibold'
+                      : 'btn-3d-secondary bg-obsidian-surface text-ivory-soft hover:text-champagne border border-champagne/20'
                   }`}
                 >
                   {btn.label}
@@ -104,8 +104,8 @@ export default function GiftFinder() {
                   onClick={() => setOccasion(btn.id)}
                   className={`px-3.5 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium transition-all ${
                     occasion === btn.id
-                      ? 'bg-champagne text-obsidian shadow-glow font-semibold'
-                      : 'bg-obsidian-surface text-ivory-soft hover:text-champagne border border-champagne/20'
+                      ? 'btn-3d bg-champagne text-obsidian shadow-glow font-semibold'
+                      : 'btn-3d-secondary bg-obsidian-surface text-ivory-soft hover:text-champagne border border-champagne/20'
                   }`}
                 >
                   {btn.label}
@@ -131,8 +131,8 @@ export default function GiftFinder() {
                   onClick={() => setBudget(btn.id)}
                   className={`px-3.5 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium transition-all ${
                     budget === btn.id
-                      ? 'bg-champagne text-obsidian shadow-glow font-semibold'
-                      : 'bg-obsidian-surface text-ivory-soft hover:text-champagne border border-champagne/20'
+                      ? 'btn-3d bg-champagne text-obsidian shadow-glow font-semibold'
+                      : 'btn-3d-secondary bg-obsidian-surface text-ivory-soft hover:text-champagne border border-champagne/20'
                   }`}
                 >
                   {btn.label}
