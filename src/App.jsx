@@ -13,7 +13,6 @@ import ForHimSection from './components/ForHimSection';
 import ForHerSection from './components/ForHerSection';
 import PrivateOffers from './components/PrivateOffers';
 import GiftFinder from './components/GiftFinder';
-import EditorialCampaign from './components/EditorialCampaign';
 import Bestsellers from './components/Bestsellers';
 import Craftsmanship from './components/Craftsmanship';
 import BrandStory from './components/BrandStory';
@@ -62,13 +61,10 @@ export default function App() {
         {activeView === 'orders' && <MyOrdersView />}
         {(!activeView || activeView === 'home') && (
           <>
-            {/* 1. Primary Hero: Women's Brand Ambassador Campaign */}
-            <EditorialCampaign />
-
-            {/* 2. Second Hero: Jewellery That Holds A Moment (Brand Philosophy & Masterpiece) */}
+            {/* 1. Hero Section with Genuine Full-Bleed Video 1 Background */}
             <Hero />
 
-            {/* 3. Signature Brand Story & Atelier Introduction */}
+            {/* 2. Signature Brand Story & Atelier Philosophy (WHY HAMHOLD?) */}
             <BrandStory />
 
             {/* 4. Fine Jewellery Categories */}

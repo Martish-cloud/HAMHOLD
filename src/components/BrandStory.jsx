@@ -27,8 +27,8 @@ export default function BrandStory() {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-espresso-dark/60 border-t border-champagne/15 relative overflow-hidden">
-      {/* 1. Subtle Background Video 2 (~10% opacity) clipped strictly to section */}
+    <section className="py-20 md:py-28 bg-obsidian border-t border-champagne/15 relative overflow-hidden">
+      {/* 1. Full-Width Background Video 2 (~90% visual visibility, matching CRAFTED WITH INTENTION) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
@@ -36,51 +36,58 @@ export default function BrandStory() {
           muted
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover object-center opacity-10 filter brightness-110 contrast-125"
+          className="w-full h-full object-cover object-center opacity-90 filter contrast-105 brightness-95"
         >
           <source src="/Video/Video%20(2).mp4" type="video/mp4" />
         </video>
-        {/* Deep luxurious atmospheric tints & overlays */}
-        <div className="absolute inset-0 bg-espresso-dark/75 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(11,11,12,0.85)_85%)] pointer-events-none" />
-        {/* Soft edge seam transitions ensuring Video 2 NEVER bleeds into adjacent sections */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,12,1)_0%,transparent_12%,transparent_88%,rgba(11,11,12,1)_100%)] pointer-events-none" />
+
+        {/* Lightweight translucent overlay ensuring 90% video visibility while keeping text crisp */}
+        <div className="absolute inset-0 bg-obsidian/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(11,11,12,0.45)_95%)] pointer-events-none" />
+
+        {/* Soft edge seam transitions preventing video from spilling into sections above or below */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,12,1)_0%,transparent_10%,transparent_90%,rgba(11,11,12,1)_100%)] pointer-events-none" />
       </div>
 
       {/* 2. Section Heading & Editorial Narrative */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-14 md:mb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Left Text */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          {/* Left Text Column: Translucent luxury backdrop ensuring video is visible while text remains effortless to read */}
           <div className="lg:col-span-7">
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-champagne font-medium block mb-3">
-              Brand Philosophy
-            </span>
-            <h2 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl text-ivory tracking-[0.03em] font-normal leading-[1.12] mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian/70 border border-champagne/30 text-champagne text-[10px] md:text-xs uppercase tracking-[0.25em] font-medium mb-4 backdrop-blur-md shadow-luxury">
+              <span>BRAND PHILOSOPHY</span>
+            </div>
+            <h2 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl text-ivory tracking-[0.03em] font-normal leading-[1.12] mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
               <GhostInterleapText>
                 WHY <br />
                 <span className="text-gold-gradient">HAMHOLD?</span>
               </GhostInterleapText>
             </h2>
-            <p className="text-ivory-soft text-sm sm:text-base font-sans font-light leading-relaxed mb-6">
-              Founded on the belief that fine jewellery is the ultimate vessel of human memory. In a fast-moving world, certain moments demand a physical anchor — something precious, beautiful, and enduring.
-            </p>
-            <p className="text-ivory-muted text-xs sm:text-sm font-sans font-light leading-relaxed">
-              At HAMHOLD, every cut of gold and setting of stone is measured against one timeless standard: will this piece hold its emotional weight fifty years from today?
-            </p>
+            <div className="p-5 sm:p-6 rounded-2xl bg-obsidian/35 border border-champagne/20 backdrop-blur-sm shadow-luxury space-y-4 max-w-2xl">
+              <p className="text-ivory text-sm sm:text-base font-sans font-light leading-relaxed drop-shadow">
+                Founded on the belief that fine jewellery is the ultimate vessel of human memory. In a fast-moving world, certain moments demand a physical anchor — something precious, beautiful, and enduring.
+              </p>
+              <p className="text-ivory-soft text-xs sm:text-sm font-sans font-light leading-relaxed drop-shadow">
+                At HAMHOLD, every cut of gold and setting of stone is measured against one timeless standard: will this piece hold its emotional weight fifty years from today?
+              </p>
+            </div>
           </div>
 
-          {/* Right Highlight: Atelier Motto */}
+          {/* Right Highlight: Translucent Motto Card floating over Video 2 */}
           <div className="lg:col-span-5">
-            <div className="p-7 sm:p-8 rounded-2xl bg-obsidian-card/80 border border-champagne/25 backdrop-blur-md shadow-luxury relative overflow-hidden group">
-              <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-champagne/5 blur-2xl pointer-events-none" />
-              <span className="text-[10px] uppercase tracking-[0.25em] text-champagne/80 font-medium block mb-2">
-                The HAMHOLD Atelier Motto
-              </span>
-              <p className="font-serif-luxury text-2xl sm:text-3xl text-gold-gradient italic leading-relaxed mb-3">
+            <div className="p-6 sm:p-8 rounded-2xl bg-obsidian/30 hover:bg-obsidian/50 border border-champagne/25 hover:border-champagne/55 backdrop-blur-sm shadow-luxury relative overflow-hidden group transition-all duration-500">
+              <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-champagne/10 blur-2xl pointer-events-none" />
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] uppercase tracking-[0.25em] text-champagne font-medium">
+                  THE HAMHOLD ATELIER MOTTO
+                </span>
+                <span className="text-champagne/70 text-xs">❖</span>
+              </div>
+              <p className="font-serif-luxury text-2xl sm:text-3xl text-gold-gradient italic leading-relaxed mb-4 drop-shadow">
                 "Crafted to Hold Forever."
               </p>
-              <div className="h-[1px] w-14 bg-champagne/30 mb-3" />
-              <p className="text-xs text-ivory-muted font-sans font-light leading-relaxed">
+              <div className="h-[1px] w-16 bg-champagne/30 mb-4" />
+              <p className="text-xs sm:text-sm text-ivory-soft font-sans font-light leading-relaxed drop-shadow">
                 Pieces engineered structurally to last generations, holding their emotional significance intact.
               </p>
             </div>
@@ -89,7 +96,7 @@ export default function BrandStory() {
       </div>
 
       {/* 3. Continuous Horizontal Text-and-Icon Marquee Strip over Video 2 */}
-      <div className="relative z-10 w-full border-y border-champagne/15 bg-obsidian/30 backdrop-blur-sm py-6 sm:py-8 overflow-hidden">
+      <div className="relative z-10 w-full border-y border-champagne/20 bg-obsidian/25 backdrop-blur-sm py-6 sm:py-8 overflow-hidden">
         <div className="w-full overflow-hidden marquee-wrapper [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
           <div className="flex w-max animate-marquee-rtl">
             {/* Primary Track */}
@@ -100,14 +107,14 @@ export default function BrandStory() {
                   <React.Fragment key={idx}>
                     <div className="flex flex-col justify-center min-w-[280px] sm:min-w-[340px] max-w-[360px] sm:max-w-[420px] px-6 sm:px-10">
                       <div className="flex items-center gap-3.5 mb-2.5">
-                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-champagne/10 border border-champagne/25 flex items-center justify-center text-champagne shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-obsidian/60 border border-champagne/30 flex items-center justify-center text-champagne shrink-0 backdrop-blur-md shadow-sm">
                           <Icon className="w-4 h-4 stroke-[1.5]" />
                         </div>
-                        <h3 className="font-serif-luxury text-xl sm:text-2xl text-ivory font-normal tracking-wide whitespace-nowrap">
+                        <h3 className="font-serif-luxury text-xl sm:text-2xl text-ivory font-normal tracking-wide whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                           {item.title}
                         </h3>
                       </div>
-                      <p className="text-ivory-muted/90 text-xs sm:text-sm font-sans font-light leading-relaxed pl-11 sm:pl-12">
+                      <p className="text-ivory-soft text-xs sm:text-sm font-sans font-light leading-relaxed pl-12 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                         {item.desc}
                       </p>
                     </div>
@@ -128,14 +135,14 @@ export default function BrandStory() {
                   <React.Fragment key={`dup-${idx}`}>
                     <div className="flex flex-col justify-center min-w-[280px] sm:min-w-[340px] max-w-[360px] sm:max-w-[420px] px-6 sm:px-10">
                       <div className="flex items-center gap-3.5 mb-2.5">
-                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-champagne/10 border border-champagne/25 flex items-center justify-center text-champagne shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-obsidian/60 border border-champagne/30 flex items-center justify-center text-champagne shrink-0 backdrop-blur-md shadow-sm">
                           <Icon className="w-4 h-4 stroke-[1.5]" />
                         </div>
-                        <h3 className="font-serif-luxury text-xl sm:text-2xl text-ivory font-normal tracking-wide whitespace-nowrap">
+                        <h3 className="font-serif-luxury text-xl sm:text-2xl text-ivory font-normal tracking-wide whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                           {item.title}
                         </h3>
                       </div>
-                      <p className="text-ivory-muted/90 text-xs sm:text-sm font-sans font-light leading-relaxed pl-11 sm:pl-12">
+                      <p className="text-ivory-soft text-xs sm:text-sm font-sans font-light leading-relaxed pl-12 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                         {item.desc}
                       </p>
                     </div>
