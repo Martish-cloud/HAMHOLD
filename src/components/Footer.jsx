@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useShop } from '../context/ShopContext';
 import { ArrowRight, Check } from 'lucide-react';
 import { BlurWipeText } from './TextAnimations';
@@ -7,6 +7,31 @@ export default function Footer() {
   const { navigateToCatalogue, setIsAboutOpen, setIsContactOpen } = useShop();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+  const videoRef = useRef(null);
+
+  // Performance-optimized video playback: play when near viewport, pause when scrolled away
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { rootMargin: '300px 0px', threshold: 0.05 }
+    );
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
@@ -20,24 +45,46 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-espresso-dark text-ivory border-t border-champagne/20 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="relative bg-obsidian text-ivory border-t border-champagne/20 pt-16 pb-12 overflow-hidden">
+      {/* Genuine Full-Width Background Video 4 (~90% visual visibility) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover object-center opacity-90 filter contrast-105 brightness-95"
+        >
+          <source src="/Video/Video%20(4).mp4" type="video/mp4" />
+        </video>
+
+        {/* Lightweight translucent overlay ensuring 90% video visibility while keeping text crisp */}
+        <div className="absolute inset-0 bg-obsidian/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(11,11,12,0.45)_95%)] pointer-events-none" />
+
+        {/* Soft edge seam transition preventing video from overflowing boundaries */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,12,0.85)_0%,transparent_12%,transparent_90%,rgba(11,11,12,0.85)_100%)] pointer-events-none" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top Newsletter & Brand statement */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-16 border-b border-champagne/15 items-center">
           <div className="lg:col-span-6">
-            <span className="font-serif-luxury text-3xl sm:text-4xl tracking-[0.2em] font-normal text-ivory block">
+            <span className="font-serif-luxury text-3xl sm:text-4xl tracking-[0.2em] font-normal text-ivory block drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
               <BlurWipeText text="HAMHOLD" />
             </span>
-            <span className="text-[10px] tracking-[0.35em] text-champagne uppercase font-sans mt-1 block">
+            <span className="text-[10px] tracking-[0.35em] text-champagne uppercase font-sans mt-1 block drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
               CRAFTED TO HOLD FOREVER.
             </span>
-            <p className="text-ivory-muted text-xs sm:text-sm font-light mt-3 max-w-md font-sans leading-relaxed">
+            <p className="text-ivory-soft text-xs sm:text-sm font-light mt-3 max-w-md font-sans leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
               Experience contemporary fine jewellery sculpted for life's unforgettable milestones. Handcrafted in solid 18K gold and certified diamonds.
             </p>
           </div>
 
           <div className="lg:col-span-6">
-            <div className="bg-obsidian-card/80 border border-champagne/20 rounded-2xl p-6 backdrop-blur-md">
+            <div className="bg-obsidian/65 border border-champagne/30 rounded-2xl p-6 backdrop-blur-md shadow-luxury">
               <span className="text-xs uppercase tracking-widest text-champagne font-semibold block mb-1">
                 Atelier Gazette
               </span>
@@ -77,10 +124,10 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-14 border-b border-champagne/15 text-xs">
           {/* 1. SHOP */}
           <div>
-            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4">
+            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               SHOP
             </span>
-            <ul className="space-y-2.5 text-ivory-muted font-sans">
+            <ul className="space-y-2.5 text-ivory-soft/90 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               <li>
                 <button
                   onClick={() => navigateToCatalogue({ category: 'rings' })}
@@ -134,10 +181,10 @@ export default function Footer() {
 
           {/* 2. DISCOVER */}
           <div>
-            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4">
+            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               DISCOVER
             </span>
-            <ul className="space-y-2.5 text-ivory-muted font-sans">
+            <ul className="space-y-2.5 text-ivory-soft/90 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               <li>
                 <button
                   onClick={() => navigateToCatalogue({ isNew: true })}
@@ -187,10 +234,10 @@ export default function Footer() {
 
           {/* 3. SUPPORT */}
           <div>
-            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4">
+            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               SUPPORT
             </span>
-            <ul className="space-y-2.5 text-ivory-muted font-sans">
+            <ul className="space-y-2.5 text-ivory-soft/90 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               <li>
                 <button
                   onClick={() => setIsContactOpen(true)}
@@ -244,10 +291,10 @@ export default function Footer() {
 
           {/* 4. CONNECT */}
           <div>
-            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4">
+            <span className="text-[11px] uppercase tracking-widest text-champagne font-semibold block mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               CONNECT
             </span>
-            <p className="text-ivory-muted text-xs mb-3 font-sans">
+            <p className="text-ivory-soft/90 text-xs mb-3 font-sans drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
               Follow the Midnight Atelier on official brand channels:
             </p>
             <div className="flex items-center gap-3">
@@ -284,7 +331,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Legal Notice */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-[11px] text-ivory-muted/70 gap-4">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-[11px] text-ivory-soft/80 gap-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
           <p>© {new Date().getFullYear()} HAMHOLD. All rights reserved. Crafted to hold forever.</p>
           <div className="flex items-center gap-4 text-[10px] tracking-wider uppercase">
             <span>The Midnight Atelier Experience</span>

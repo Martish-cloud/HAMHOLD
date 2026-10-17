@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Shield, Award } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
-import { GhostInterleapText } from './TextAnimations';
 
 export default function Hero() {
   const { navigateToCatalogue, setIsAboutOpen } = useShop();
@@ -27,27 +26,13 @@ export default function Hero() {
 
       {/* 2. Hero Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center">
-        {/* Left Column: Editorial Headline & Actions with crisp text contrast over Video 1 */}
+        {/* Left Column: Eyebrow & Actions with crisp contrast over Video 1 */}
         <div className="max-w-2xl text-left pt-6 lg:pt-0">
           {/* Eyebrow / Tagline pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian/70 border border-champagne/30 text-champagne text-[10px] md:text-xs tracking-[0.25em] uppercase font-medium mb-6 backdrop-blur-md shadow-luxury">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian/70 border border-champagne/30 text-champagne text-[10px] md:text-xs tracking-[0.25em] uppercase font-medium mb-8 backdrop-blur-md shadow-luxury">
             <Sparkles className="w-3.5 h-3.5 text-champagne animate-pulse" />
             <span>MIDNIGHT ATELIER 2026</span>
           </div>
-
-          {/* Main Editorial Headline */}
-          <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] tracking-[0.04em] font-normal leading-[1.08] text-ivory mb-6 drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]">
-            <GhostInterleapText>
-              JEWELLERY <br />
-              THAT HOLDS <br />
-              <span className="italic font-light text-gold-gradient">*A MOMENT.</span>
-            </GhostInterleapText>
-          </h1>
-
-          {/* Subtext / Description */}
-          <p className="text-ivory-soft text-sm sm:text-base md:text-lg max-w-xl font-light leading-relaxed mb-8 md:mb-10 font-sans drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-            Contemporary fine jewellery, crafted for the moments you never want to forget. Sculpted in 18K solid gold, certified natural diamonds, and heirloom gemstones.
-          </p>
 
           {/* Action CTAs with 3D Micro-interactions */}
           <div className="flex flex-col sm:flex-row items-center justify-start gap-4 sm:gap-5">
@@ -66,22 +51,6 @@ export default function Hero() {
             >
               DISCOVER HAMHOLD
             </button>
-          </div>
-
-          {/* Trust Highlights with 3D Hover Depth */}
-          <div className="mt-8 pt-6 border-t border-champagne/20 grid grid-cols-3 gap-4 max-w-lg text-left drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            <div className="p-2 rounded-lg transition-transform duration-300 hover:-translate-y-1">
-              <span className="block font-serif-luxury text-xl md:text-2xl text-champagne font-medium">100%</span>
-              <span className="text-[10px] md:text-xs text-ivory-muted uppercase tracking-wider">BIS Hallmarked</span>
-            </div>
-            <div className="p-2 rounded-lg transition-transform duration-300 hover:-translate-y-1">
-              <span className="block font-serif-luxury text-xl md:text-2xl text-champagne font-medium">37+</span>
-              <span className="text-[10px] md:text-xs text-ivory-muted uppercase tracking-wider">Bespoke Pieces</span>
-            </div>
-            <div className="p-2 rounded-lg transition-transform duration-300 hover:-translate-y-1">
-              <span className="block font-serif-luxury text-xl md:text-2xl text-champagne font-medium">Insured</span>
-              <span className="text-[10px] md:text-xs text-ivory-muted uppercase tracking-wider">Pan-India Delivery</span>
-            </div>
           </div>
         </div>
       </div>

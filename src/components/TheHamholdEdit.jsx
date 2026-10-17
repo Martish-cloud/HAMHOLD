@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Eye, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 import { BlurWipeText } from './TextAnimations';
+import image3 from '../../Images/Image 3.png';
 
 export default function TheHamholdEdit() {
   const { navigateToCatalogue } = useShop();
@@ -28,11 +29,9 @@ export default function TheHamholdEdit() {
       title: '02 — TIMELESS ADORNMENT',
       subtitle: 'Heirloom silhouettes designed to transcend generations',
       tag: 'Heritage Collection',
-      src: '/images/editorial/the-hamhold-edit/hamhold-edit-02.webp',
-      srcWebp: '/images/editorial/the-hamhold-edit/hamhold-edit-02.webp',
-      srcMobile: '/images/editorial/the-hamhold-edit/hamhold-edit-02-mobile.webp',
+      src: image3,
       aspect: 'aspect-[16/11]',
-      focal: 'object-[center_28%]',
+      focal: 'object-[47%_0%]',
       alt: 'HAMHOLD Timeless Adornment - Emerald & Gold Haute Joaillerie'
     }
   ];
