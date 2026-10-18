@@ -6,7 +6,7 @@ export default function Hero() {
   const { navigateToCatalogue, setIsAboutOpen } = useShop();
 
   return (
-    <section className="relative min-h-[90vh] md:min-h-[96vh] flex items-center overflow-hidden bg-obsidian pt-12 pb-14 md:pt-16 md:pb-16">
+    <section className="relative min-h-[70vh] md:min-h-[74vh] lg:min-h-[78vh] flex items-center overflow-hidden bg-obsidian pt-8 pb-10 md:pt-10 md:pb-12">
       {/* 1. Genuine Full-Bleed Background Video 4 (100% Original Opacity, Sharp, No Dimming Overlay) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -26,20 +26,20 @@ export default function Hero() {
 
       {/* 2. Hero Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center">
-        {/* Left Column: Eyebrow & Actions with crisp contrast over Video 1 */}
-        <div className="max-w-2xl text-left pt-6 lg:pt-0">
+        {/* Left Column: Eyebrow & Actions with crisp contrast over Video 4 */}
+        <div className="max-w-2xl text-left pt-4 lg:pt-0">
           {/* Eyebrow / Tagline pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian/70 border border-champagne/30 text-champagne text-[10px] md:text-xs tracking-[0.25em] uppercase font-medium mb-8 backdrop-blur-md shadow-luxury">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian/70 border border-champagne/30 text-champagne text-[10px] md:text-xs tracking-[0.25em] uppercase font-medium mb-5 sm:mb-6 backdrop-blur-md shadow-luxury">
             <Sparkles className="w-3.5 h-3.5 text-champagne animate-pulse" />
             <span>MIDNIGHT ATELIER 2026</span>
           </div>
 
           {/* Action CTAs with 3D Micro-interactions */}
-          <div className="flex flex-col sm:flex-row items-center justify-start gap-4 sm:gap-5">
+          <div className="flex flex-col sm:flex-row items-center justify-start gap-3.5 sm:gap-4">
             <button
               onClick={() => navigateToCatalogue()}
               data-cursor="explore"
-              className="btn-3d w-full sm:w-auto px-8 py-4 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-3 group"
+              className="btn-3d w-full sm:w-auto px-7 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-glow flex items-center justify-center gap-2.5 group"
             >
               <span>EXPLORE COLLECTION</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -47,7 +47,7 @@ export default function Hero() {
 
             <button
               onClick={() => setIsAboutOpen(true)}
-              className="btn-3d-secondary w-full sm:w-auto px-8 py-4 rounded-full bg-obsidian/75 hover:bg-obsidian border border-champagne/40 text-ivory hover:text-champagne text-xs tracking-[0.22em] uppercase font-medium transition-all duration-300 backdrop-blur-md shadow-luxury"
+              className="btn-3d-secondary w-full sm:w-auto px-7 py-3.5 rounded-full bg-obsidian/75 hover:bg-obsidian border border-champagne/40 text-ivory hover:text-champagne text-xs tracking-[0.22em] uppercase font-medium transition-all duration-300 backdrop-blur-md shadow-luxury"
             >
               DISCOVER HAMHOLD
             </button>

@@ -17,11 +17,11 @@ export default function TheHamholdEdit() {
       title: '01 — THE SIGNATURE EDIT',
       subtitle: 'Sculpted in 18K solid gold, Polki diamonds & royal emeralds',
       tag: 'Grand Atelier',
-      src: '/images/editorial/the-hamhold-edit/hamhold-edit-01.webp',
-      srcWebp: '/images/editorial/the-hamhold-edit/hamhold-edit-01.webp',
-      srcMobile: '/images/editorial/the-hamhold-edit/hamhold-edit-01-mobile.webp',
+      src: '/images/editorial/the-hamhold-edit/Image 1.png',
+      srcWebp: '/images/editorial/the-hamhold-edit/image-1.webp',
+      srcMobile: '/images/editorial/the-hamhold-edit/image-1-mobile.webp',
       aspect: 'aspect-[16/10.8]',
-      focal: 'object-[51%_10%]',
+      focal: 'object-[50%_15%]',
       alt: 'HAMHOLD The Signature Edit - Haute Joaillerie'
     },
     {
@@ -155,13 +155,27 @@ export default function TheHamholdEdit() {
                       alt={imgItem.alt}
                       loading="lazy"
                       decoding="async"
-                      className={`w-full h-full object-cover ${imgItem.focal} transition-transform duration-1000 ease-out group-hover:scale-[1.04]`}
+                      className={`w-full h-full object-cover ${imgItem.focal} transition-transform duration-1000 ease-out ${
+                        imgItem.id === '01'
+                          ? 'opacity-[0.53] scale-[0.96] group-hover:scale-[1.00]'
+                          : 'group-hover:scale-[1.04]'
+                      }`}
                     />
                   </picture>
 
-                  {/* Gradient Vignettes */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/25 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-obsidian/30 via-transparent to-transparent opacity-50 pointer-events-none" />
+                  {/* Gradient Vignettes / Overlays */}
+                  {imgItem.id === '01' ? (
+                    <>
+                      {/* Subtle dark overlay providing ~50-55% perceived visibility while keeping text crisp */}
+                      <div className="absolute inset-0 bg-obsidian/15 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/85 via-obsidian/20 to-transparent pointer-events-none" />
+                    </>
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/25 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-obsidian/30 via-transparent to-transparent opacity-50 pointer-events-none" />
+                    </>
+                  )}
 
                   {/* Top Tag with 3D Depth */}
                   <div className="absolute top-4 left-4 z-10 transform group-hover:translate-z-20 transition-transform duration-300">

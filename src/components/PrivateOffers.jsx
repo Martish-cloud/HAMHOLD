@@ -34,19 +34,19 @@ export default function PrivateOffers() {
         <div className="max-w-[1080px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-7 items-stretch">
           {/* Card 1: For Women — The Signature Edit */}
           <div className="card-hover-lift-fill preserve-3d group relative rounded-2xl border border-champagne/20 hover:border-champagne/50 transition-all duration-500 overflow-hidden shadow-luxury hover:shadow-luxury-hover flex flex-col justify-between will-change-transform bg-obsidian">
-            {/* Ambient underlying image texture subtly visible through 70% opaque / 30% translucent content panel */}
+            {/* Ambient underlying image texture visible through ~60% visible / 40% translucent content panel */}
             <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
               <img
                 src="/Image 2.png"
                 alt=""
                 aria-hidden="true"
-                className="w-full h-full object-cover object-[50%_20%] opacity-40 filter blur-[1.5px] scale-105"
+                className="w-full h-full object-cover object-[50%_20%] opacity-55 filter blur-[1.5px] scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-obsidian/30 to-obsidian/60" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-obsidian/20 to-obsidian/45" />
             </div>
 
-            {/* 1. Top Image Showcase — 100% Visibility, No Dark Overlays, Refined Model Framing */}
-            <div className="relative z-10 w-full h-48 sm:h-52 lg:h-[210px] overflow-hidden flex-shrink-0">
+            {/* 1. Top Image Showcase — Slightly Reduced Scale to Reveal Full Head, Face & Jewellery */}
+            <div className="relative z-10 w-full h-48 sm:h-52 lg:h-[210px] overflow-hidden flex-shrink-0 bg-obsidian">
               <picture className="w-full h-full block">
                 <source srcSet="/images/editorial/the-hamhold-edit/image-2.webp" type="image/webp" />
                 <img
@@ -56,7 +56,7 @@ export default function PrivateOffers() {
                   decoding="async"
                   width="800"
                   height="450"
-                  className="w-full h-full object-cover object-[50%_12%] transform transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover object-[50%_16%] scale-[0.93] transform transition-transform duration-700 ease-out group-hover:scale-[0.97]"
                 />
               </picture>
 
@@ -73,8 +73,8 @@ export default function PrivateOffers() {
               </div>
             </div>
 
-            {/* 2 & 3. Compact Blue-Outlined Content Area with ~70% Opaque Luxury Background */}
-            <div className="relative z-10 px-5 py-3.5 sm:px-6 sm:py-4 flex-1 flex flex-col justify-between bg-obsidian/70 backdrop-blur-md border-t border-champagne/20">
+            {/* 2 & 3. Compact Blue-Outlined Content Area with ~60% Visible Luxury Background */}
+            <div className="relative z-10 px-5 py-3.5 sm:px-6 sm:py-4 flex-1 flex flex-col justify-between bg-obsidian/40 backdrop-blur-md border-t border-champagne/20">
               <div className="transform group-hover:translate-z-10 transition-transform duration-300">
                 <div className="flex items-center gap-1.5 text-[9.5px] uppercase tracking-[0.22em] text-champagne font-medium mb-1">
                   <Gem className="w-3 h-3 text-champagne" />
@@ -83,7 +83,7 @@ export default function PrivateOffers() {
                 <h3 className="font-serif-luxury text-lg sm:text-xl text-ivory mb-1 tracking-[0.02em] group-hover:text-champagne transition-colors">
                   THE SIGNATURE EDIT
                 </h3>
-                <p className="text-ivory-soft/85 text-[11px] sm:text-xs font-sans font-light leading-snug mb-2.5">
+                <p className="text-ivory-soft/90 text-[11px] sm:text-xs font-sans font-light leading-snug mb-2.5">
                   A harmonious trio uniting the Aurelia Solitaire Diamond Ring, Celeste South Sea Pearl Drops, and Nocturne Pavé Tennis Bracelet in solid 18K gold.
                 </p>
 
@@ -105,8 +105,8 @@ export default function PrivateOffers() {
               </div>
             </div>
 
-            {/* 4. Pricing & CTA Row — 10% Higher Contrast & Visual Prominence */}
-            <div className="relative z-10 px-5 py-3 sm:px-6 sm:py-3.5 bg-obsidian/90 backdrop-blur-md border-t border-champagne/25 flex items-center justify-between gap-3">
+            {/* 4. Pricing & CTA Row — Grounded with high legibility */}
+            <div className="relative z-10 px-5 py-3 sm:px-6 sm:py-3.5 bg-obsidian/75 backdrop-blur-md border-t border-champagne/25 flex items-center justify-between gap-3">
               <div>
                 <div className="text-[9.5px] uppercase tracking-[0.22em] text-champagne/85 font-semibold font-sans">
                   Curated Suite Price
@@ -134,19 +134,19 @@ export default function PrivateOffers() {
 
           {/* Card 2: For Men — The Gentlemen's Edit */}
           <div className="card-hover-lift-fill preserve-3d group relative rounded-2xl border border-champagne/20 hover:border-champagne/50 transition-all duration-500 overflow-hidden shadow-luxury hover:shadow-luxury-hover flex flex-col justify-between will-change-transform bg-obsidian">
-            {/* Ambient underlying image texture subtly visible through 70% opaque / 30% translucent content panel */}
+            {/* Ambient underlying image texture visible through ~60% visible / 40% translucent content panel */}
             <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
               <img
                 src="/images/brand/ambassador/ayush-ambassador.webp"
                 alt=""
                 aria-hidden="true"
-                className="w-full h-full object-cover object-[35%_25%] opacity-40 filter blur-[1.5px] scale-105"
+                className="w-full h-full object-cover object-[35%_25%] opacity-55 filter blur-[1.5px] scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-obsidian/30 to-obsidian/60" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-obsidian/20 to-obsidian/45" />
             </div>
 
             {/* 1. Top Image Showcase — 100% Visibility, No Dark Overlays, Refined Model Framing */}
-            <div className="relative z-10 w-full h-48 sm:h-52 lg:h-[210px] overflow-hidden flex-shrink-0">
+            <div className="relative z-10 w-full h-48 sm:h-52 lg:h-[210px] overflow-hidden flex-shrink-0 bg-obsidian">
               <img
                 src="/images/brand/ambassador/ayush-ambassador.webp"
                 alt="Men's Fine Jewellery Private Edit"
@@ -170,8 +170,8 @@ export default function PrivateOffers() {
               </div>
             </div>
 
-            {/* 2 & 3. Compact Blue-Outlined Content Area with ~70% Opaque Luxury Background */}
-            <div className="relative z-10 px-5 py-3.5 sm:px-6 sm:py-4 flex-1 flex flex-col justify-between bg-obsidian/70 backdrop-blur-md border-t border-champagne/20">
+            {/* 2 & 3. Compact Blue-Outlined Content Area with ~60% Visible Luxury Background */}
+            <div className="relative z-10 px-5 py-3.5 sm:px-6 sm:py-4 flex-1 flex flex-col justify-between bg-obsidian/40 backdrop-blur-md border-t border-champagne/20">
               <div className="transform group-hover:translate-z-10 transition-transform duration-300">
                 <div className="flex items-center gap-1.5 text-[9.5px] uppercase tracking-[0.22em] text-champagne font-medium mb-1">
                   <ShieldCheck className="w-3 h-3 text-champagne" />
@@ -180,7 +180,7 @@ export default function PrivateOffers() {
                 <h3 className="font-serif-luxury text-lg sm:text-xl text-ivory mb-1 tracking-[0.02em] group-hover:text-champagne transition-colors">
                   THE GENTLEMEN'S EDIT
                 </h3>
-                <p className="text-ivory-soft/85 text-[11px] sm:text-xs font-sans font-light leading-snug mb-2.5">
+                <p className="text-ivory-soft/90 text-[11px] sm:text-xs font-sans font-light leading-snug mb-2.5">
                   A commanding masculine assembly featuring the Monarch Imperial Diamond Kada, Sovereign Black Onyx Ring, and Atlas Diamond-Cut Cuban Chain.
                 </p>
 
@@ -202,8 +202,8 @@ export default function PrivateOffers() {
               </div>
             </div>
 
-            {/* 4. Pricing & CTA Row — 10% Higher Contrast & Visual Prominence */}
-            <div className="relative z-10 px-5 py-3 sm:px-6 sm:py-3.5 bg-obsidian/90 backdrop-blur-md border-t border-champagne/25 flex items-center justify-between gap-3">
+            {/* 4. Pricing & CTA Row — Grounded with high legibility */}
+            <div className="relative z-10 px-5 py-3 sm:px-6 sm:py-3.5 bg-obsidian/75 backdrop-blur-md border-t border-champagne/25 flex items-center justify-between gap-3">
               <div>
                 <div className="text-[9.5px] uppercase tracking-[0.22em] text-champagne/85 font-semibold font-sans">
                   Curated Suite Price

@@ -22,8 +22,25 @@ export default function NewArrivals() {
   const newProducts = NEW_ARRIVAL_IDS.map((id) => PRODUCTS.find((p) => p.id === id)).filter(Boolean);
 
   return (
-    <section className="py-10 sm:py-12 md:py-12 lg:py-14 bg-obsidian border-t border-champagne/10 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-10 sm:py-12 md:py-12 lg:py-14 bg-obsidian border-t border-champagne/10 relative overflow-hidden">
+      {/* Genuine Full-Width Background Video 2 (~60% perceived visibility) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover object-center opacity-[0.62] filter contrast-105 brightness-100"
+        >
+          <source src="/Video/Video%20(2).mp4" type="video/mp4" />
+        </video>
+        {/* Balanced subtle dark overlay achieving ~60% perceived video visibility while maintaining product card contrast */}
+        <div className="absolute inset-0 bg-obsidian/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian/45 pointer-events-none" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-7">
           <div>

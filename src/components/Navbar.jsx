@@ -37,20 +37,20 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full transition-all duration-300">
-      {/* 1. Announcement Bar */}
-      <div className="bg-espresso-dark border-b border-champagne/15 px-4 py-2 text-center text-[10px] md:text-xs tracking-[0.2em] uppercase font-medium text-champagne/90 flex items-center justify-center gap-3">
+    <>
+      {/* 1. Announcement Bar — Scrolls away normally */}
+      <div className="bg-espresso-dark border-b border-champagne/15 px-4 py-2 text-center text-[10px] md:text-xs tracking-[0.2em] uppercase font-medium text-champagne/90 flex items-center justify-center gap-3 relative z-30">
         <span>COMPLIMENTARY INSURED SHIPPING ACROSS INDIA ON ORDERS ABOVE ₹25,000</span>
         <span className="hidden md:inline text-champagne/40">•</span>
         <span className="hidden md:inline text-ivory-muted/80">100% BIS HALLMARKED &amp; CERTIFIED</span>
       </div>
 
-      {/* 2. Main Navigation Bar with 3D Depth */}
+      {/* 2. Main Navigation Bar with 3D Depth — Sticky at Top of Viewport */}
       <nav
-        className={`w-full transition-all duration-500 border-b ${
+        className={`sticky top-0 z-50 w-full transition-all duration-500 border-b ${
           isScrolled
             ? 'bg-obsidian/95 backdrop-blur-2xl border-champagne/25 py-3 shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(214,194,154,0.06)]'
-            : 'bg-obsidian/85 backdrop-blur-md border-champagne/10 py-4 sm:py-5'
+            : 'bg-obsidian/90 backdrop-blur-md border-champagne/10 py-3.5 sm:py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -334,6 +334,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-    </header>
+    </>
   );
 }

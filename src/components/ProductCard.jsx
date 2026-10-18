@@ -132,10 +132,12 @@ export default function ProductCard({ product, priority = false, compact = false
               e.currentTarget.src = product.fallbackImage;
             }
           }}
-          className={`product-card-image w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.05] will-change-transform ${
+          className={`product-card-image w-full h-full transition-transform duration-500 ease-out will-change-transform ${
             product.primaryImage?.endsWith('.svg')
-              ? 'object-contain p-6 relative z-[1] filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)]'
-              : product.imagePosition || 'object-cover object-center'
+              ? 'object-contain p-6 relative z-[1] filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.65)] group-hover:scale-[1.05]'
+              : compact
+              ? 'object-cover object-[center_16%] scale-[0.93] group-hover:scale-[0.98]'
+              : `${product.imagePosition || 'object-cover object-center'} group-hover:scale-[1.05]`
           }`}
         />
 

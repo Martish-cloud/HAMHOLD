@@ -24,8 +24,8 @@ export default function Bestsellers() {
   const bestsellers = MOST_WANTED_IDS.map((id) => PRODUCTS.find((p) => p.id === id)).filter(Boolean);
 
   return (
-    <section className="py-10 sm:py-12 md:py-12 lg:py-14 bg-espresso-dark/60 border-t border-champagne/10 relative overflow-hidden">
-      {/* Background Video 11 (~45-47% visual visibility) */}
+    <section className="py-10 sm:py-12 md:py-12 lg:py-14 bg-espresso-dark/30 border-t border-champagne/10 relative overflow-hidden">
+      {/* Background Video 11 (~65% visual visibility) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
@@ -33,13 +33,13 @@ export default function Bestsellers() {
           muted
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover object-center opacity-[0.46] filter contrast-105 brightness-95"
+          className="w-full h-full object-cover object-center opacity-[0.68] filter contrast-105 brightness-100"
         >
           <source src="/Video/Video%2011.mp4" type="video/mp4" />
         </video>
-        {/* Subtle dark overlay to ensure high text contrast while preserving ~45-47% video visibility */}
-        <div className="absolute inset-0 bg-obsidian/40 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/50 via-transparent to-obsidian/50 pointer-events-none" />
+        {/* Balanced subtle dark overlay preserving ~65% video visibility while keeping text crisp */}
+        <div className="absolute inset-0 bg-obsidian/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/45 via-transparent to-obsidian/45 pointer-events-none" />
       </div>
 
       {/* Decorative ambient lighting with parallax */}
