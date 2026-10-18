@@ -20,8 +20,8 @@ export default function TheHamholdEdit() {
       src: '/images/editorial/the-hamhold-edit/hamhold-edit-01.webp',
       srcWebp: '/images/editorial/the-hamhold-edit/hamhold-edit-01.webp',
       srcMobile: '/images/editorial/the-hamhold-edit/hamhold-edit-01-mobile.webp',
-      aspect: 'aspect-[16/11.5]',
-      focal: 'object-[51%_6%]',
+      aspect: 'aspect-[16/10.8]',
+      focal: 'object-[51%_10%]',
       alt: 'HAMHOLD The Signature Edit - Haute Joaillerie'
     },
     {
@@ -30,8 +30,8 @@ export default function TheHamholdEdit() {
       subtitle: 'Heirloom silhouettes designed to transcend generations',
       tag: 'Heritage Collection',
       src: image3,
-      aspect: 'aspect-[16/11.5]',
-      focal: 'object-[51%_0%]',
+      aspect: 'aspect-[16/10.8]',
+      focal: 'object-[49%_7%]',
       alt: 'HAMHOLD Timeless Adornment - Emerald & Gold Haute Joaillerie'
     }
   ];
@@ -130,72 +130,74 @@ export default function TheHamholdEdit() {
         </div>
 
         {/* Swipeable Balanced Editorial Gallery Container */}
-        <div
-          ref={scrollContainerRef}
-          onScroll={checkScroll}
-          className="flex md:grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch overflow-x-auto no-scrollbar snap-x snap-mandatory touch-pan-x pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
-        >
-          {lookbookImages.map((imgItem, index) => (
-            <div key={imgItem.id} className="flex-shrink-0 w-[88vw] sm:w-[480px] md:w-auto snap-center flex flex-col">
-              <div
-                onClick={() => setActiveLightboxIndex(index)}
-                data-cursor="view"
-                className="card-hover-lift-fill preserve-3d group relative flex-1 min-h-[360px] sm:min-h-[420px] lg:min-h-[445px] aspect-[16/11.5] rounded-2xl overflow-hidden bg-obsidian-card border border-champagne/20 hover:border-champagne/55 transition-all duration-700 cursor-pointer shadow-luxury hover:shadow-luxury-hover flex flex-col justify-end will-change-transform"
-              >
-                <picture className="absolute inset-0 w-full h-full block">
-                  {imgItem.srcMobile && (
-                    <source media="(max-width: 640px)" srcSet={imgItem.srcMobile} type="image/webp" />
-                  )}
-                  {imgItem.srcWebp && (
-                    <source srcSet={imgItem.srcWebp} type="image/webp" />
-                  )}
-                  <img
-                    src={imgItem.src}
-                    alt={imgItem.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className={`w-full h-full object-cover ${imgItem.focal} transition-transform duration-1000 ease-out group-hover:scale-[1.04]`}
-                  />
-                </picture>
+        <div className="max-w-[1080px] mx-auto">
+          <div
+            ref={scrollContainerRef}
+            onScroll={checkScroll}
+            className="flex md:grid md:grid-cols-2 gap-6 lg:gap-7 items-stretch overflow-x-auto no-scrollbar snap-x snap-mandatory touch-pan-x pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
+          >
+            {lookbookImages.map((imgItem, index) => (
+              <div key={imgItem.id} className="flex-shrink-0 w-[84vw] sm:w-[420px] md:w-auto snap-center flex flex-col">
+                <div
+                  onClick={() => setActiveLightboxIndex(index)}
+                  data-cursor="view"
+                  className={`card-hover-lift-fill preserve-3d group relative flex-1 min-h-[300px] sm:min-h-[340px] lg:min-h-[370px] ${imgItem.aspect} rounded-2xl overflow-hidden bg-obsidian-card border border-champagne/20 hover:border-champagne/55 transition-all duration-700 cursor-pointer shadow-luxury hover:shadow-luxury-hover flex flex-col justify-end will-change-transform`}
+                >
+                  <picture className="absolute inset-0 w-full h-full block">
+                    {imgItem.srcMobile && (
+                      <source media="(max-width: 640px)" srcSet={imgItem.srcMobile} type="image/webp" />
+                    )}
+                    {imgItem.srcWebp && (
+                      <source srcSet={imgItem.srcWebp} type="image/webp" />
+                    )}
+                    <img
+                      src={imgItem.src}
+                      alt={imgItem.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className={`w-full h-full object-cover ${imgItem.focal} transition-transform duration-1000 ease-out group-hover:scale-[1.04]`}
+                    />
+                  </picture>
 
-                {/* Gradient Vignettes */}
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/25 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-r from-obsidian/30 via-transparent to-transparent opacity-50 pointer-events-none" />
+                  {/* Gradient Vignettes */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/25 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-obsidian/30 via-transparent to-transparent opacity-50 pointer-events-none" />
 
-                {/* Top Tag with 3D Depth */}
-                <div className="absolute top-5 left-5 z-10 transform group-hover:translate-z-20 transition-transform duration-300">
-                  <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.25em] font-medium bg-obsidian/80 text-champagne border border-champagne/30 backdrop-blur-md shadow-sm">
-                    {imgItem.tag}
-                  </span>
-                </div>
+                  {/* Top Tag with 3D Depth */}
+                  <div className="absolute top-4 left-4 z-10 transform group-hover:translate-z-20 transition-transform duration-300">
+                    <span className="px-3 py-1 rounded-full text-[9px] uppercase tracking-[0.25em] font-medium bg-obsidian/80 text-champagne border border-champagne/30 backdrop-blur-md shadow-sm">
+                      {imgItem.tag}
+                    </span>
+                  </div>
 
-                {/* Centered Circular Luxury VIEW Button with 3D Float on Hover */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                  <div
-                    style={{ transform: 'translateZ(36px)' }}
-                    className="w-20 h-20 rounded-full border border-champagne/60 bg-obsidian/85 backdrop-blur-md flex flex-col items-center justify-center text-champagne opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 shadow-luxury"
-                  >
-                    <Eye className="w-5 h-5 mb-0.5 text-champagne" />
-                    <span className="text-[10px] tracking-[0.25em] font-medium uppercase text-ivory">VIEW</span>
+                  {/* Centered Circular Luxury VIEW Button with 3D Float on Hover */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                    <div
+                      style={{ transform: 'translateZ(36px)' }}
+                      className="w-16 h-16 sm:w-18 sm:h-18 rounded-full border border-champagne/60 bg-obsidian/85 backdrop-blur-md flex flex-col items-center justify-center text-champagne opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 shadow-luxury"
+                    >
+                      <Eye className="w-4.5 h-4.5 mb-0.5 text-champagne" />
+                      <span className="text-[9px] sm:text-[10px] tracking-[0.25em] font-medium uppercase text-ivory">VIEW</span>
+                    </div>
+                  </div>
+
+                  {/* Bottom Editorial Caption with 3D Depth */}
+                  <div className="relative z-10 p-5 sm:p-6 lg:p-6.5 transform group-hover:translate-z-10 transition-transform duration-300">
+                    <span className="font-serif-luxury text-base sm:text-xl lg:text-xl text-ivory block font-normal group-hover:text-champagne transition-colors duration-300">
+                      {imgItem.title}
+                    </span>
+                    <p className="text-[11px] sm:text-xs md:text-[13px] text-ivory-soft/80 font-sans font-light mt-1 leading-snug">
+                      {imgItem.subtitle}
+                    </p>
                   </div>
                 </div>
-
-                {/* Bottom Editorial Caption with 3D Depth */}
-                <div className="relative z-10 p-6 sm:p-8 transform group-hover:translate-z-10 transition-transform duration-300">
-                  <span className="font-serif-luxury text-lg sm:text-2xl text-ivory block font-normal group-hover:text-champagne transition-colors duration-300">
-                    {imgItem.title}
-                  </span>
-                  <p className="text-xs sm:text-sm text-ivory-soft/80 font-sans font-light mt-1">
-                    {imgItem.subtitle}
-                  </p>
-                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Bottom Editorial Action */}
-        <div className="mt-14 text-center">
+        <div className="mt-10 sm:mt-12 text-center">
           <button
             onClick={() => navigateToCatalogue({ gender: 'women' })}
             data-cursor="explore"
