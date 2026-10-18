@@ -18,9 +18,9 @@ export default function CollectionsSection() {
   const currentCollection =
     COLLECTIONS.find((c) => c.id === activeCollectionId) || COLLECTIONS[0];
 
-  // Get products from this collection for full swiping experience, excluding Samara Red (₹92,000)
+  // Get products from this collection for full swiping experience
   let collectionProducts = PRODUCTS.filter(
-    (p) => p.collection === activeCollectionId && p.id !== 'samara-ribbed-bangle'
+    (p) => p.collection === activeCollectionId
   );
 
   // Exact required order for SIGNATURE COLLECTION curated pieces:

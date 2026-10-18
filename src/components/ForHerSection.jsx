@@ -8,8 +8,14 @@ import { BlurWipeText } from './TextAnimations';
 export default function ForHerSection() {
   const { navigateToCatalogue } = useShop();
 
-  // Women's jewellery curation
-  const womensProducts = PRODUCTS.filter((p) => p.gender === 'women').slice(0, 4);
+  // 4 Curated Women's Jewellery Cards (Part B replacements applied)
+  const FOR_HER_IDS = [
+    'imperial-quad-baguette-band',
+    'harmonia-tennis-necklace',
+    'serena-pearl-bracelet',
+    'lyra-halo-ring'
+  ];
+  const womensProducts = FOR_HER_IDS.map((id) => PRODUCTS.find((p) => p.id === id)).filter(Boolean);
 
   return (
     <section className="py-20 md:py-28 bg-obsidian border-t border-champagne/10 relative overflow-hidden">

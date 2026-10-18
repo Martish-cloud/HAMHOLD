@@ -8,8 +8,18 @@ import { NeonTypewriterText } from './TextAnimations';
 export default function NewArrivals() {
   const { navigateToCatalogue } = useShop();
 
-  // Pick at least 8 new products
-  const newProducts = PRODUCTS.filter((p) => p.isNew).slice(0, 8);
+  // 8 Curated New Arrivals (Part C replacements applied)
+  const NEW_ARRIVAL_IDS = [
+    'devi-floral-ruby-emerald-collar',
+    'padmavati-royal-kundan-set',
+    'selene-tahitian-pendant',
+    'astraea-constellation-locket',
+    'zara-diamond-nose-ring',
+    'chandrika-crescent-nath',
+    'astraea-diamond-foliage-choker',
+    'symphony-sapphire-collar-alt'
+  ];
+  const newProducts = NEW_ARRIVAL_IDS.map((id) => PRODUCTS.find((p) => p.id === id)).filter(Boolean);
 
   return (
     <section className="py-20 md:py-28 bg-obsidian border-t border-champagne/10 relative">

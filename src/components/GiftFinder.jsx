@@ -2,13 +2,17 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { PRODUCTS } from '../data/products';
 import ProductCard from './ProductCard';
 import { useShop } from '../context/ShopContext';
-import { Gift, ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { Gift, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { NeonTypewriterText } from './TextAnimations';
+
+// Curated 8 Sets of Handpicked Recommendations (48 items total: Sets 1-7 women, Set 8 consolidated men's)
+const SHOWCASE_PRODUCTS = PRODUCTS.slice(0, 48);
 
 export default function GiftFinder() {
   const { navigateToCatalogue } = useShop();
   const videoRef = useRef(null);
   const showcaseRef = useRef(null);
+  const isTransitioningRef = useRef(false);
 
   const [recipient, setRecipient] = useState('all'); // 'all' | 'her' | 'him'
   const [occasion, setOccasion] = useState('all'); // 'all' | 'anniversary' | 'birthday' | 'wedding' | 'engagement'
@@ -39,7 +43,7 @@ export default function GiftFinder() {
   }, []);
 
   const allFilteredGifts = useMemo(() => {
-    return PRODUCTS.filter((p) => {
+    return SHOWCASE_PRODUCTS.filter((p) => {
       // Recipient check
       if (recipient === 'her' && p.gender !== 'women') return false;
       if (recipient === 'him' && p.gender !== 'men') return false;
@@ -64,14 +68,12 @@ export default function GiftFinder() {
     });
   }, [recipient, occasion, budget]);
 
-  // Display 6 cards per desktop row
+  // Display 6 cards per desktop row - Exactly 8 sets (SET 1 OF 8 to SET 8 OF 8)
   const CARDS_PER_ROW = 6;
   const totalRows = Math.max(1, Math.ceil(allFilteredGifts.length / CARDS_PER_ROW));
 
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
   const [animState, setAnimState] = useState('active'); // 'entering' | 'active' | 'exiting'
-  const [isPaused, setIsPaused] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   // Check prefers-reduced-motion
@@ -85,24 +87,6 @@ export default function GiftFinder() {
     }
   }, []);
 
-  // Track showcase visibility
-  useEffect(() => {
-    const el = showcaseRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   // Reset row & enter animation when filters change
   useEffect(() => {
     setCurrentRowIndex(0);
@@ -113,33 +97,53 @@ export default function GiftFinder() {
     return () => clearTimeout(t);
   }, [recipient, occasion, budget]);
 
-  // Premium continuous vertical showcase transition sequence
+  // Preload next set's product images so transitions are instant and free of flicker
   useEffect(() => {
-    if (totalRows <= 1 || !isInView || isPaused || prefersReducedMotion) return;
+    if (totalRows <= 1) return;
+    const nextRowIdx = (currentRowIndex + 1) % totalRows;
+    const nextCards = allFilteredGifts.slice(
+      nextRowIdx * CARDS_PER_ROW,
+      (nextRowIdx + 1) * CARDS_PER_ROW
+    );
+    nextCards.forEach((prod) => {
+      if (prod?.primaryImage) {
+        const img = new Image();
+        img.src = prod.primaryImage;
+      }
+    });
+  }, [currentRowIndex, totalRows, allFilteredGifts]);
 
-    // Showcase cycle: Display cards in center for 6.5s before transitioning to next row
+  // Fully automatic continuous showcase transition sequence (no clicks or hovers required)
+  useEffect(() => {
+    if (totalRows <= 1 || prefersReducedMotion) return;
+
+    // Viewing interval: cards remain fully visible and readable for 5.5s before moving
     const cycleTimer = setTimeout(() => {
-      // 1. Row continues upward with restrained fade-out and slight scale reduction
+      if (isTransitioningRef.current) return;
+      isTransitioningRef.current = true;
+
+      // 1. Cards smoothly move upward, slightly scale down and fade out
       setAnimState('exiting');
 
       const advanceTimer = setTimeout(() => {
-        // 2. Next row enters smoothly from below with subtle dark transition
+        // 2. Next set enters smoothly from below (Set 8 loops back to Set 1)
         setCurrentRowIndex((prev) => (prev + 1) % totalRows);
         setAnimState('entering');
 
         const activeTimer = setTimeout(() => {
-          // 3. Complete product cards become clearly visible in center
+          // 3. New set glides into main view and settles
           setAnimState('active');
-        }, 50);
+          isTransitioningRef.current = false;
+        }, 40);
 
         return () => clearTimeout(activeTimer);
-      }, 650);
+      }, 750);
 
       return () => clearTimeout(advanceTimer);
-    }, 6500);
+    }, 5500);
 
     return () => clearTimeout(cycleTimer);
-  }, [totalRows, currentRowIndex, isInView, isPaused, prefersReducedMotion]);
+  }, [totalRows, currentRowIndex, prefersReducedMotion]);
 
   const currentGifts = useMemo(() => {
     return allFilteredGifts.slice(
@@ -148,24 +152,26 @@ export default function GiftFinder() {
     );
   }, [allFilteredGifts, currentRowIndex]);
 
-  const handleNextRow = () => {
-    if (totalRows <= 1) return;
+  const transitionToRow = (targetIdx) => {
+    if (totalRows <= 1 || isTransitioningRef.current || targetIdx === currentRowIndex) return;
+    isTransitioningRef.current = true;
     setAnimState('exiting');
     setTimeout(() => {
-      setCurrentRowIndex((prev) => (prev + 1) % totalRows);
+      setCurrentRowIndex(targetIdx);
       setAnimState('entering');
-      setTimeout(() => setAnimState('active'), 50);
-    }, 350);
+      setTimeout(() => {
+        setAnimState('active');
+        isTransitioningRef.current = false;
+      }, 40);
+    }, 400);
+  };
+
+  const handleNextRow = () => {
+    transitionToRow((currentRowIndex + 1) % totalRows);
   };
 
   const handlePrevRow = () => {
-    if (totalRows <= 1) return;
-    setAnimState('exiting');
-    setTimeout(() => {
-      setCurrentRowIndex((prev) => (prev - 1 + totalRows) % totalRows);
-      setAnimState('entering');
-      setTimeout(() => setAnimState('active'), 50);
-    }, 350);
+    transitionToRow((currentRowIndex - 1 + totalRows) % totalRows);
   };
 
   return (
@@ -300,9 +306,6 @@ export default function GiftFinder() {
         ref={showcaseRef}
         aria-label="Gift Recommendations"
         className="py-12 md:py-16 bg-espresso-dark/95 border-t border-champagne/15 relative overflow-hidden"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onTouchStart={() => setIsPaused(true)}
       >
         {/* Ambient subtle glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-champagne/5 rounded-full blur-[160px] pointer-events-none" />
@@ -316,17 +319,11 @@ export default function GiftFinder() {
                   <span className="text-xs uppercase tracking-widest text-ivory-muted font-medium">
                     Showing {currentGifts.length} Handpicked Gift Recommendation{currentGifts.length > 1 ? 's' : ''}
                     {totalRows > 1 && (
-                      <span className="text-champagne/80 font-normal ml-2">
-                        (Set {currentRowIndex + 1} of {totalRows})
+                      <span className="text-champagne font-medium ml-2">
+                        (SET {currentRowIndex + 1} OF {totalRows})
                       </span>
                     )}
                   </span>
-                  {totalRows > 1 && (
-                    <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-obsidian/60 border border-champagne/20 text-[10px] text-champagne/80">
-                      {isPaused ? <Play className="w-2.5 h-2.5" /> : <Pause className="w-2.5 h-2.5" />}
-                      <span>{isPaused ? 'Paused on inspection' : 'Continuous showcase'}</span>
-                    </span>
-                  )}
                 </div>
 
                 <div className="flex items-center gap-3 self-end sm:self-auto">
@@ -370,17 +367,17 @@ export default function GiftFinder() {
                   style={{
                     transform:
                       animState === 'entering'
-                        ? 'translateY(28px) scale(0.99)'
+                        ? 'translateY(28px) scale(0.985)'
                         : animState === 'exiting'
-                        ? 'translateY(-24px) scale(0.985)'
+                        ? 'translateY(-28px) scale(0.985)'
                         : 'translateY(0) scale(1)',
                     opacity: animState === 'active' ? 1 : 0,
                     transition: prefersReducedMotion
                       ? 'none'
                       : animState === 'exiting'
-                      ? 'transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1)'
+                      ? 'transform 0.75s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1)'
                       : animState === 'active'
-                      ? 'transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1)'
+                      ? 'transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1)'
                       : 'none',
                     willChange: 'transform, opacity'
                   }}
@@ -398,15 +395,7 @@ export default function GiftFinder() {
                   {Array.from({ length: totalRows }).map((_, idx) => (
                     <button
                       key={idx}
-                      onClick={() => {
-                        if (idx === currentRowIndex) return;
-                        setAnimState('exiting');
-                        setTimeout(() => {
-                          setCurrentRowIndex(idx);
-                          setAnimState('entering');
-                          setTimeout(() => setAnimState('active'), 50);
-                        }, 350);
-                      }}
+                      onClick={() => transitionToRow(idx)}
                       aria-label={`Go to row ${idx + 1}`}
                       className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                         currentRowIndex === idx

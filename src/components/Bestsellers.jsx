@@ -10,8 +10,18 @@ export default function Bestsellers() {
   const { navigateToCatalogue } = useShop();
   const bgParallaxRef = useParallax({ speed: 0.12, maxOffset: 30 });
 
-  // Pick 8 to 12 bestsellers across categories
-  const bestsellers = PRODUCTS.filter((p) => p.isBestseller).slice(0, 8);
+  // 8 Curated Most Wanted Bestsellers (Part A replacements applied)
+  const MOST_WANTED_IDS = [
+    'aurelia-solitaire-ring',
+    'seraphina-eternity-band',
+    'avantika-meenakari-gold-kada',
+    'noor-polki-pearl-collar',
+    'celeste-dual-bypass-ring',
+    'astra-drop-earrings',
+    'celeste-pearl-drops',
+    'vesper-sapphire-ring'
+  ];
+  const bestsellers = MOST_WANTED_IDS.map((id) => PRODUCTS.find((p) => p.id === id)).filter(Boolean);
 
   return (
     <section className="py-20 md:py-28 bg-espresso-dark/60 border-t border-champagne/10 relative overflow-hidden">
