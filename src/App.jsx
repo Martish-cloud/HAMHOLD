@@ -36,7 +36,7 @@ export default function App() {
   const { activeView } = useShop();
 
   return (
-    <div className="relative min-h-screen bg-obsidian text-ivory font-sans selection:bg-champagne selection:text-obsidian overflow-x-hidden">
+    <div className="relative min-h-screen bg-obsidian text-ivory font-sans selection:bg-champagne selection:text-obsidian overflow-x-clip">
       {/* Desktop Custom Cursor */}
       <CustomCursor />
 

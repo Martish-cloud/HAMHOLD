@@ -33,7 +33,8 @@ export default function NewArrivals() {
           preload="metadata"
           className="w-full h-full object-cover object-center opacity-[0.62] filter contrast-105 brightness-100"
         >
-          <source src="/Video/Video%20(2).mp4" type="video/mp4" />
+          <source src="/Video/Video%20%20(2).mp4" type="video/mp4" />
+          <source src="/Video/Video%202.mp4" type="video/mp4" />
         </video>
         {/* Balanced subtle dark overlay achieving ~60% perceived video visibility while maintaining product card contrast */}
         <div className="absolute inset-0 bg-obsidian/20 pointer-events-none" />
