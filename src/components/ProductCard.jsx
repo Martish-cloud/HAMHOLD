@@ -126,14 +126,14 @@ export default function ProductCard({ product, priority = false }) {
         {/* Quick View Button (Desktop overlay with 3D elevation) */}
         <div
           style={{ transform: tiltState.isHovered ? 'translateZ(30px)' : 'translateZ(0px)' }}
-          className="absolute inset-x-4 bottom-4 z-20 hidden md:flex opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+          className="absolute inset-x-3 bottom-3 z-20 hidden md:flex opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
         >
           <button
             onClick={(e) => {
               e.stopPropagation();
               setSelectedProduct(product);
             }}
-            className="btn-3d w-full py-2.5 px-4 rounded-lg bg-obsidian-surface/90 hover:bg-champagne hover:text-obsidian border border-champagne/30 text-ivory text-[11px] uppercase tracking-widest font-semibold backdrop-blur-md flex items-center justify-center gap-2 transition-all duration-300 shadow-luxury"
+            className="btn-3d w-full py-2 px-3 rounded-lg bg-obsidian-surface/90 hover:bg-champagne hover:text-obsidian border border-champagne/30 text-ivory text-[10px] uppercase tracking-widest font-semibold backdrop-blur-md flex items-center justify-center gap-1.5 transition-all duration-300 shadow-luxury"
           >
             <Eye className="w-3.5 h-3.5" />
             Quick View
@@ -144,34 +144,34 @@ export default function ProductCard({ product, priority = false }) {
       {/* Product Information with 3D Depth */}
       <div
         style={{ transform: tiltState.isHovered ? 'translateZ(14px)' : 'translateZ(0px)' }}
-        className="relative z-10 p-4 md:p-5 flex flex-col flex-grow justify-between border-t border-champagne/10 bg-obsidian-light/30 transition-transform duration-300"
+        className="relative z-10 p-3 sm:p-3.5 lg:p-3 xl:p-3.5 flex flex-col flex-grow justify-between border-t border-champagne/10 bg-obsidian-light/30 transition-transform duration-300"
       >
         <div>
           {/* Category & Collection */}
-          <div className="flex items-center justify-between text-[10px] tracking-widest uppercase text-taupe-light mb-1.5 font-medium">
-            <span>{product.collection}</span>
-            <span>{product.metal.split(' ')[0]}</span>
+          <div className="flex items-center justify-between text-[10px] tracking-widest uppercase text-taupe-light mb-1 font-medium">
+            <span>{product.collection || 'ATELIER'}</span>
+            <span>{product.metal?.split(' ')[0] || ''}</span>
           </div>
 
           {/* Product Name */}
-          <h3 className="font-serif-luxury text-base md:text-lg text-ivory line-clamp-1 group-hover:text-champagne transition-colors duration-300">
+          <h3 className="font-serif-luxury text-[13px] sm:text-sm lg:text-[13px] xl:text-sm text-ivory line-clamp-1 group-hover:text-champagne transition-colors duration-300">
             {product.name}
           </h3>
 
           {/* Stone detail */}
-          <p className="text-[11px] text-ivory-muted/70 line-clamp-1 mt-0.5 font-sans">
-            {product.stone.split('(')[0]}
+          <p className="text-[10px] sm:text-[11px] text-ivory-muted/70 line-clamp-1 mt-0.5 font-sans">
+            {product.stone?.split('(')[0]}
           </p>
         </div>
 
         {/* Price & Action with 3D Push */}
-        <div className="mt-4 pt-3 border-t border-champagne/10 flex items-center justify-between">
+        <div className="mt-2.5 pt-2 border-t border-champagne/10 flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="text-base md:text-lg font-semibold text-champagne tracking-tight">
+            <span className="text-sm sm:text-base font-semibold text-champagne tracking-tight">
               {formatINR(product.price)}
             </span>
             {product.originalPrice && (
-              <span className="text-[11px] text-ivory-muted/50 line-through">
+              <span className="text-[10px] sm:text-[11px] text-ivory-muted/50 line-through">
                 {formatINR(product.originalPrice)}
               </span>
             )}
@@ -181,13 +181,13 @@ export default function ProductCard({ product, priority = false }) {
             onClick={handleQuickAdd}
             aria-label="Add to Bag"
             style={{ transform: tiltState.isHovered ? 'translateZ(24px)' : 'translateZ(0px)' }}
-            className={`btn-3d w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+            className={`btn-3d w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
               isAdded
                 ? 'bg-champagne text-obsidian scale-105 shadow-glow'
                 : 'bg-champagne/10 hover:bg-champagne text-champagne hover:text-obsidian border border-champagne/30'
             }`}
           >
-            {isAdded ? <Check className="w-4 h-4 stroke-[2.5]" /> : <Plus className="w-4 h-4" />}
+            {isAdded ? <Check className="w-3.5 h-3.5 stroke-[2.5]" /> : <Plus className="w-3.5 h-3.5" />}
           </button>
         </div>
       </div>

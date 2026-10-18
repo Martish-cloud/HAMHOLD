@@ -16,6 +16,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import BackButton from './BackButton';
 
 export default function CheckoutView() {
   const {
@@ -358,6 +359,7 @@ export default function CheckoutView() {
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-fade-in">
       <div className="mb-8">
+        <BackButton fallbackView="catalogue" className="mb-4" />
         <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-champagne font-medium block mb-2">
           Secure Luxury Checkout
         </span>

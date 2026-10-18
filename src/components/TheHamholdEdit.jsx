@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Eye, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 import { BlurWipeText } from './TextAnimations';
-import image3 from '../../Images/Image 3.png';
+import image3 from '../../Images/THE HAMHOLD EDIT/Image 3.png';
 
 export default function TheHamholdEdit() {
   const { navigateToCatalogue } = useShop();
@@ -20,8 +20,8 @@ export default function TheHamholdEdit() {
       src: '/images/editorial/the-hamhold-edit/hamhold-edit-01.webp',
       srcWebp: '/images/editorial/the-hamhold-edit/hamhold-edit-01.webp',
       srcMobile: '/images/editorial/the-hamhold-edit/hamhold-edit-01-mobile.webp',
-      aspect: 'aspect-[16/11]',
-      focal: 'object-[center_25%]',
+      aspect: 'aspect-[16/11.5]',
+      focal: 'object-[51%_6%]',
       alt: 'HAMHOLD The Signature Edit - Haute Joaillerie'
     },
     {
@@ -30,8 +30,8 @@ export default function TheHamholdEdit() {
       subtitle: 'Heirloom silhouettes designed to transcend generations',
       tag: 'Heritage Collection',
       src: image3,
-      aspect: 'aspect-[16/11]',
-      focal: 'object-[47%_0%]',
+      aspect: 'aspect-[16/11.5]',
+      focal: 'object-[51%_0%]',
       alt: 'HAMHOLD Timeless Adornment - Emerald & Gold Haute Joaillerie'
     }
   ];
@@ -140,7 +140,7 @@ export default function TheHamholdEdit() {
               <div
                 onClick={() => setActiveLightboxIndex(index)}
                 data-cursor="view"
-                className="card-hover-lift-fill preserve-3d group relative flex-1 min-h-[420px] sm:min-h-[480px] lg:min-h-[580px] rounded-2xl overflow-hidden bg-obsidian-card border border-champagne/20 hover:border-champagne/55 transition-all duration-700 cursor-pointer shadow-luxury hover:shadow-luxury-hover flex flex-col justify-end will-change-transform"
+                className="card-hover-lift-fill preserve-3d group relative flex-1 min-h-[360px] sm:min-h-[420px] lg:min-h-[445px] aspect-[16/11.5] rounded-2xl overflow-hidden bg-obsidian-card border border-champagne/20 hover:border-champagne/55 transition-all duration-700 cursor-pointer shadow-luxury hover:shadow-luxury-hover flex flex-col justify-end will-change-transform"
               >
                 <picture className="absolute inset-0 w-full h-full block">
                   {imgItem.srcMobile && (
@@ -159,7 +159,7 @@ export default function TheHamholdEdit() {
                 </picture>
 
                 {/* Gradient Vignettes */}
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent opacity-85 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/25 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-r from-obsidian/30 via-transparent to-transparent opacity-50 pointer-events-none" />
 
                 {/* Top Tag with 3D Depth */}

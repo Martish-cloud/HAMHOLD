@@ -380,8 +380,26 @@ export function ShopProvider({ children }) {
     };
   };
 
+  // View History Stack for seamless back navigation
+  const [navigationHistory, setNavigationHistory] = useState([
+    { view: 'home', scrollY: 0, filters: null }
+  ]);
+
+  const pushViewHistory = (currentViewSnapshot) => {
+    const currentScroll = typeof window !== 'undefined' ? window.scrollY : 0;
+    setNavigationHistory(prev => [
+      ...prev,
+      {
+        view: currentViewSnapshot || activeView,
+        scrollY: currentScroll,
+        filters: activeView === 'catalogue' ? { ...catalogueFilter } : null
+      }
+    ]);
+  };
+
   // Navigation Helpers
   const navigateToCatalogue = (filterOverrides = {}) => {
+    pushViewHistory();
     setCatalogueFilter(prev => ({
       ...prev,
       category: 'all',
@@ -397,30 +415,71 @@ export function ShopProvider({ children }) {
   };
 
   const navigateToTrackOrder = (orderId = null) => {
+    pushViewHistory();
     if (orderId) setActiveTrackingOrderId(orderId);
     setActiveView('track-order');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navigateToOrders = () => {
+    pushViewHistory();
     setActiveView('orders');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navigateToOurStory = () => {
+    pushViewHistory();
     setActiveView('story');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navigateToCheckout = () => {
+    pushViewHistory();
     setIsCartOpen(false);
     setActiveView('checkout');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const goBack = (fallbackView = 'catalogue') => {
+    if (selectedProduct) {
+      setSelectedProduct(null);
+      return;
+    }
+
+    if (navigationHistory.length > 1) {
+      const newHistory = [...navigationHistory];
+      const previousState = newHistory.pop();
+      setNavigationHistory(newHistory);
+
+      if (previousState) {
+        if (previousState.filters) {
+          setCatalogueFilter(previousState.filters);
+        }
+        setActiveView(previousState.view);
+        setTimeout(() => {
+          if (typeof window !== 'undefined' && previousState.scrollY !== undefined) {
+            window.scrollTo({ top: previousState.scrollY, behavior: 'smooth' });
+          }
+        }, 60);
+        return;
+      }
+    }
+
+    // Default fallback
+    if (activeView === 'catalogue') {
+      setActiveView('home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setActiveView(fallbackView || 'catalogue');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <ShopContext.Provider
       value={{
+        goBack,
+        navigationHistory,
         // Cart
         cart,
         cartCount,

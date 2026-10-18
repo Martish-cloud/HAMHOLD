@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useShop, TRACKING_STAGES } from '../context/ShopContext';
 import { formatINR } from '../data/products';
 import { Search, Package, Check, Clock, Truck, ShieldCheck, MapPin, ArrowRight } from 'lucide-react';
+import BackButton from './BackButton';
 
 export default function TrackOrderView() {
   const { orders, activeTrackingOrderId, setActiveTrackingOrderId, getOrderStatus, navigateToCatalogue } = useShop();
@@ -59,6 +60,11 @@ export default function TrackOrderView() {
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto animate-fade-in">
+      {/* Back Button */}
+      <div className="mb-6">
+        <BackButton fallbackView="home" label="Back to Atelier" />
+      </div>
+
       {/* Page Header */}
       <div className="text-center max-w-2xl mx-auto mb-10">
         <span className="text-[10px] md:text-xs uppercase tracking-[0.28em] text-champagne font-semibold block mb-2">

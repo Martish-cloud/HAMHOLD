@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PRODUCTS, CATEGORIES, COLLECTIONS } from '../data/products';
 import ProductCard from './ProductCard';
+import BackButton from './BackButton';
 import { useShop } from '../context/ShopContext';
 import { Filter, SlidersHorizontal, ArrowUpDown, X, RotateCcw, Check } from 'lucide-react';
 
@@ -99,10 +100,16 @@ export default function ProductListingPage() {
   ].filter(Boolean).length;
 
   return (
-    <div className="py-10 md:py-16 bg-obsidian min-h-screen text-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-8 md:py-14 bg-obsidian min-h-screen text-ivory">
+      <div className="max-w-7xl 2xl:max-w-[1600px] xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
-        <div className="mb-10 text-center md:text-left border-b border-champagne/15 pb-8">
+        <div className="mb-8 text-center md:text-left border-b border-champagne/15 pb-6">
+          <div className="flex items-center justify-between mb-4">
+            <BackButton fallbackView="home" label="Back to Atelier" />
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-champagne/80 font-medium">
+              Curated Masterpieces
+            </span>
+          </div>
           <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-champagne font-medium block mb-2">
             The Complete Atelier Catalogue
           </span>
@@ -198,9 +205,9 @@ export default function ProductListingPage() {
         </div>
 
         {/* Main Content Layout (Desktop Filter Sidebar + Product Grid) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-7 items-start">
           {/* Desktop Filter Sidebar */}
-          <div className="hidden lg:block lg:col-span-3 bg-obsidian-card/60 border border-champagne/15 rounded-xl p-6 sticky top-28 space-y-6">
+          <div className="hidden lg:block lg:col-span-3 xl:col-span-2 bg-obsidian-card/60 border border-champagne/15 rounded-xl p-5 xl:p-5.5 sticky top-28 space-y-5">
             <div className="flex items-center justify-between pb-4 border-b border-champagne/15">
               <span className="text-xs uppercase tracking-widest font-semibold text-champagne flex items-center gap-2">
                 <SlidersHorizontal className="w-4 h-4" />
@@ -337,9 +344,9 @@ export default function ProductListingPage() {
           </div>
 
           {/* Product Grid Area */}
-          <div className="col-span-1 lg:col-span-9">
+          <div className="col-span-1 lg:col-span-9 xl:col-span-10">
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-3.5 lg:gap-3.5 xl:gap-4">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

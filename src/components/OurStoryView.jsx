@@ -2,12 +2,18 @@ import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { Compass, Shield, Heart, Sparkles, Clock, Hammer, ArrowRight } from 'lucide-react';
 import { GhostInterleapText } from './TextAnimations';
+import BackButton from './BackButton';
 
 export default function OurStoryView() {
   const { navigateToCatalogue } = useShop();
 
   return (
     <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto animate-fade-in space-y-24">
+      {/* Back Button */}
+      <div className="flex items-center justify-start">
+        <BackButton fallbackView="home" label="Back to Atelier" />
+      </div>
+
       {/* 1. Hero Manifesto */}
       <div className="text-center max-w-3xl mx-auto space-y-6">
         <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-champagne font-semibold block">

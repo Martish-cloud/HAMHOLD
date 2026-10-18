@@ -2,12 +2,18 @@ import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { formatINR } from '../data/products';
 import { Package, Truck, ArrowRight, ShieldCheck, Clock, Check } from 'lucide-react';
+import BackButton from './BackButton';
 
 export default function MyOrdersView() {
   const { orders, navigateToTrackOrder, navigateToCatalogue, getOrderStatus, customer } = useShop();
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto animate-fade-in space-y-8">
+      {/* Back Button */}
+      <div>
+        <BackButton fallbackView="home" label="Back to Atelier" />
+      </div>
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-champagne/15">
         <div>

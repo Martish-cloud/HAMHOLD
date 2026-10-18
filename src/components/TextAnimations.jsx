@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 function checkReducedMotion() {
   if (typeof window === 'undefined') return false;
@@ -25,6 +25,29 @@ export function NeonTypewriterText({ text, className = '' }) {
     checkReducedMotion() ? chars.length : 0
   );
   const [isComplete, setIsComplete] = useState(() => checkReducedMotion());
+
+  // Group characters into words to strictly prevent intra-word wrapping (e.g. "f-orget")
+  const wordTokens = useMemo(() => {
+    const tokens = [];
+    let currentWord = [];
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      if (char === ' ') {
+        if (currentWord.length > 0) {
+          tokens.push({ type: 'word', chars: currentWord });
+          currentWord = [];
+        }
+        tokens.push({ type: 'space', index: i });
+      } else {
+        currentWord.push({ char, index: i });
+      }
+    }
+    if (currentWord.length > 0) {
+      tokens.push({ type: 'word', chars: currentWord });
+    }
+    return tokens;
+  }, [text]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || checkReducedMotion()) return;
@@ -84,27 +107,44 @@ export function NeonTypewriterText({ text, className = '' }) {
       className={`inline-block relative ${className}`}
       aria-label={text}
     >
-      <span aria-hidden="true" className="whitespace-pre-wrap">
-        {chars.map((char, index) => {
-          const isRevealed = index < revealedIndex;
-          const isLead = index === revealedIndex - 1 && !isComplete;
-          const isRecent = index >= revealedIndex - 3 && index < revealedIndex - 1 && !isComplete;
-
-          let charClass = 'transition-colors duration-500 inline-block';
-
-          if (!isRevealed) {
-            charClass += ' opacity-0 select-none pointer-events-none';
-          } else if (isLead) {
-            charClass += ' text-[#FAFF00] drop-shadow-[0_0_10px_rgba(250,255,0,0.85)] drop-shadow-[0_0_20px_rgba(250,255,0,0.45)]';
-          } else if (isRecent) {
-            charClass += ' text-[#FAF4A8] drop-shadow-[0_0_6px_rgba(250,255,0,0.35)]';
-          } else {
-            charClass += ' text-inherit';
+      <span aria-hidden="true" className="whitespace-normal md:whitespace-nowrap">
+        {wordTokens.map((token, tIdx) => {
+          if (token.type === 'space') {
+            const isRevealed = token.index < revealedIndex;
+            return (
+              <span
+                key={`space-${tIdx}`}
+                className={isRevealed ? 'inline' : 'opacity-0 select-none pointer-events-none inline'}
+              >
+                {' '}
+              </span>
+            );
           }
-
           return (
-            <span key={index} className={charClass}>
-              {char}
+            <span key={`word-${tIdx}`} className="inline-block whitespace-nowrap">
+              {token.chars.map(({ char, index }) => {
+                const isRevealed = index < revealedIndex;
+                const isLead = index === revealedIndex - 1 && !isComplete;
+                const isRecent = index >= revealedIndex - 3 && index < revealedIndex - 1 && !isComplete;
+
+                let charClass = 'transition-colors duration-500 inline-block';
+
+                if (!isRevealed) {
+                  charClass += ' opacity-0 select-none pointer-events-none';
+                } else if (isLead) {
+                  charClass += ' text-[#FAFF00] drop-shadow-[0_0_10px_rgba(250,255,0,0.85)] drop-shadow-[0_0_20px_rgba(250,255,0,0.45)]';
+                } else if (isRecent) {
+                  charClass += ' text-[#FAF4A8] drop-shadow-[0_0_6px_rgba(250,255,0,0.35)]';
+                } else {
+                  charClass += ' text-inherit';
+                }
+
+                return (
+                  <span key={index} className={charClass}>
+                    {char}
+                  </span>
+                );
+              })}
             </span>
           );
         })}
