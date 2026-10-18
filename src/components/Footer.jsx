@@ -46,7 +46,7 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-obsidian text-ivory border-t border-champagne/20 pt-16 pb-12 overflow-hidden">
-      {/* Genuine Full-Width Background Video 4 (~90% visual visibility) */}
+      {/* Genuine Full-Width Background Video 5 (~90% visual visibility) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
@@ -57,7 +57,7 @@ export default function Footer() {
           preload="metadata"
           className="w-full h-full object-cover object-center opacity-90 filter contrast-105 brightness-95"
         >
-          <source src="/Video/Video%20(4).mp4" type="video/mp4" />
+          <source src="/Video/Video%20(5).mp4" type="video/mp4" />
         </video>
 
         {/* Lightweight translucent overlay ensuring 90% video visibility while keeping text crisp */}

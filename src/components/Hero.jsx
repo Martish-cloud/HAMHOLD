@@ -7,7 +7,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[90vh] md:min-h-[96vh] flex items-center overflow-hidden bg-obsidian pt-12 pb-14 md:pt-16 md:pb-16">
-      {/* 1. Genuine Full-Bleed Background Video 1 (100% Original Opacity, Sharp, No Dimming Overlay) */}
+      {/* 1. Genuine Full-Bleed Background Video 4 (100% Original Opacity, Sharp, No Dimming Overlay) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
@@ -17,7 +17,7 @@ export default function Hero() {
           preload="auto"
           className="w-full h-full object-cover object-[55%_25%] md:object-[50%_25%]"
         >
-          <source src="/Video/Video%20(1).mp4" type="video/mp4" />
+          <source src="/Video/Video%20(4).mp4" type="video/mp4" />
         </video>
 
         {/* Soft edge seams for top & bottom borders only — strictly localized, preserving 100% original video brightness across the section */}

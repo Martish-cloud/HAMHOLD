@@ -19,6 +19,23 @@ export default function ForHerSection() {
 
   return (
     <section className="py-20 md:py-28 bg-obsidian border-t border-champagne/10 relative overflow-hidden">
+      {/* Background Video 10 (~45-47% visual visibility) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover object-center opacity-[0.46] filter contrast-105 brightness-95"
+        >
+          <source src="/Video/Video%2010.mp4" type="video/mp4" />
+        </video>
+        {/* Subtle dark overlay to ensure high text contrast while preserving ~45-47% video visibility */}
+        <div className="absolute inset-0 bg-obsidian/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/50 via-transparent to-obsidian/50 pointer-events-none" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16">
           <div>

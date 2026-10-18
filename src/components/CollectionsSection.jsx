@@ -69,20 +69,37 @@ export default function CollectionsSection() {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-espresso/30 border-t border-champagne/10 relative overflow-hidden">
+    <section className="py-10 sm:py-12 md:py-14 lg:py-16 bg-espresso/30 border-t border-champagne/10 relative overflow-hidden">
+      {/* Background Video 8 (~45-47% visual visibility) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover object-center opacity-[0.46] filter contrast-105 brightness-95"
+        >
+          <source src="/Video/Video%20(8).mp4" type="video/mp4" />
+        </video>
+        {/* Subtle dark overlay to ensure high text contrast while preserving ~45-47% video visibility */}
+        <div className="absolute inset-0 bg-obsidian/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/50 via-transparent to-obsidian/50 pointer-events-none" />
+      </div>
+
       {/* Decorative ambient lighting with parallax */}
       <div
         ref={bgParallaxRef}
-        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-champagne/5 rounded-full blur-[140px] pointer-events-none will-change-transform"
+        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-champagne/5 rounded-full blur-[140px] pointer-events-none will-change-transform z-[1]"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-champagne font-medium block mb-2">
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-champagne font-medium block mb-1.5">
             Midnight Atelier Series
           </span>
-          <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-ivory tracking-[0.03em] font-normal mb-4">
+          <h2 className="font-serif-luxury text-2xl sm:text-3xl md:text-4xl text-ivory tracking-[0.03em] font-normal mb-2">
             <GhostInterleapText text="THE HAMHOLD COLLECTIONS" />
           </h2>
           <p className="text-ivory-muted/80 text-xs sm:text-sm font-sans font-light leading-relaxed">
@@ -91,14 +108,14 @@ export default function CollectionsSection() {
         </div>
 
         {/* Collection Selector Tabs */}
-        <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-2 sm:gap-4 mb-12 pb-2">
+        <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-2 sm:gap-3 mb-6 sm:mb-7 pb-1">
           {COLLECTIONS.map((col) => {
             const isActive = col.id === activeCollectionId;
             return (
               <button
                 key={col.id}
                 onClick={() => setActiveCollectionId(col.id)}
-                className={`px-5 sm:px-7 py-3 rounded-full text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 whitespace-nowrap ${
                   isActive
                     ? 'btn-3d bg-champagne text-obsidian shadow-glow font-semibold'
                     : 'btn-3d-secondary bg-obsidian-surface/60 text-ivory-soft hover:text-champagne hover:bg-obsidian-light border border-champagne/15'
@@ -113,22 +130,22 @@ export default function CollectionsSection() {
         {/* Active Collection Editorial Showcase */}
         <div
           ref={showcaseParallaxRef}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-obsidian-card/75 border border-champagne/20 rounded-2xl p-6 sm:p-10 md:p-12 shadow-2xl backdrop-blur-md will-change-transform"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center bg-obsidian-card/75 border border-champagne/20 rounded-2xl p-5 sm:p-7 md:p-8 shadow-2xl backdrop-blur-md will-change-transform"
         >
           {/* Left: Collection Story & CTA */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-champagne mb-3">
+              <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-champagne mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Collection Spotlight</span>
               </div>
-              <h3 className="font-serif-luxury text-3xl sm:text-4xl text-ivory mb-3 font-normal">
+              <h3 className="font-serif-luxury text-2xl sm:text-3xl text-ivory mb-2 font-normal">
                 <GhostInterleapText>{currentCollection.name} Collection</GhostInterleapText>
               </h3>
-              <p className="text-champagne text-sm sm:text-base font-serif italic mb-5">
+              <p className="text-champagne text-xs sm:text-sm font-serif italic mb-3">
                 "{currentCollection.tagline}"
               </p>
-              <p className="text-ivory-muted text-xs sm:text-sm font-sans font-light leading-relaxed mb-8">
+              <p className="text-ivory-muted text-xs sm:text-[13px] font-sans font-light leading-relaxed mb-5 line-clamp-3">
                 {currentCollection.description}
               </p>
             </div>
@@ -136,7 +153,7 @@ export default function CollectionsSection() {
             <button
               onClick={() => navigateToCatalogue({ collection: currentCollection.id })}
               data-cursor="explore"
-              className="btn-3d inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 w-fit group shadow-glow"
+              className="btn-3d inline-flex items-center gap-2.5 px-6 py-2.5 sm:py-3 rounded-full bg-champagne hover:bg-champagne-light text-obsidian text-[11px] sm:text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 w-fit group shadow-glow"
             >
               <span>EXPLORE {currentCollection.name.toUpperCase()}</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -144,8 +161,8 @@ export default function CollectionsSection() {
           </div>
 
           {/* Right: Featured Pieces Horizontal Swipe Track */}
-          <div className="lg:col-span-7 mt-6 lg:mt-0 flex flex-col">
-            <div className="flex items-center justify-between mb-4">
+          <div className="lg:col-span-7 mt-4 lg:mt-0 flex flex-col">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-[11px] uppercase tracking-widest text-champagne/80 font-sans">
                 Curated Pieces ({collectionProducts.length})
               </span>
@@ -154,7 +171,7 @@ export default function CollectionsSection() {
                   onClick={() => scroll('left')}
                   disabled={!canScrollLeft}
                   aria-label="Previous piece"
-                  className="btn-3d-secondary w-8 h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
+                  className="btn-3d-secondary w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
@@ -162,7 +179,7 @@ export default function CollectionsSection() {
                   onClick={() => scroll('right')}
                   disabled={!canScrollRight}
                   aria-label="Next piece"
-                  className="btn-3d-secondary w-8 h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
+                  className="btn-3d-secondary w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full border border-champagne/30 flex items-center justify-center text-champagne hover:bg-champagne hover:text-obsidian disabled:opacity-25 disabled:pointer-events-none transition-all duration-300"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -172,21 +189,21 @@ export default function CollectionsSection() {
             <div
               ref={scrollRef}
               onScroll={checkScroll}
-              className="flex overflow-x-auto gap-4 sm:gap-5 pb-3 -mx-2 px-2 no-scrollbar scroll-smooth snap-x snap-mandatory"
+              className="flex overflow-x-auto gap-3.5 sm:gap-4 pb-2 -mx-2 px-2 no-scrollbar scroll-smooth snap-x snap-mandatory"
             >
               {collectionProducts.map((prod) => (
                 <div
                   key={prod.id}
                   onClick={() => setSelectedProduct(prod)}
                   data-cursor="view"
-                  className="card-hover-lift-fill preserve-3d flex-shrink-0 w-48 sm:w-56 snap-start group p-4 rounded-xl bg-obsidian-surface/85 hover:bg-obsidian-surface border border-champagne/15 hover:border-champagne/50 transition-all duration-350 cursor-pointer flex flex-col justify-between hover:shadow-luxury-hover will-change-transform"
+                  className="card-hover-lift-fill preserve-3d flex-shrink-0 w-38 sm:w-44 lg:w-44 snap-start group p-3 sm:p-3.5 rounded-xl bg-obsidian-surface/85 hover:bg-obsidian-surface border border-champagne/15 hover:border-champagne/50 transition-all duration-350 cursor-pointer flex flex-col justify-between hover:shadow-luxury-hover will-change-transform"
                 >
                   {/* Warm Charcoal / Bronze Luxury Background Fill Transition */}
                   <div className="pointer-events-none absolute inset-0 z-0 rounded-xl bg-gradient-to-br from-espresso-light/40 via-obsidian-card to-obsidian opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
                   <div className="pointer-events-none absolute inset-0 z-0 rounded-xl bg-radial-gradient from-champagne/[0.08] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-350" />
 
                   {/* Product Image Container with 3D Depth */}
-                  <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-3 bg-obsidian-card rounded-lg overflow-hidden border border-champagne/15 group-hover:border-champagne/40 transition-colors duration-350 transform group-hover:translate-z-10">
+                  <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-2.5 bg-obsidian-card rounded-lg overflow-hidden border border-champagne/15 group-hover:border-champagne/40 transition-colors duration-350 transform group-hover:translate-z-10">
                     <img
                       src={prod.primaryImage}
                       alt={prod.name}
@@ -200,10 +217,10 @@ export default function CollectionsSection() {
                     />
                   </div>
                   <div className="relative z-10 transform group-hover:translate-z-10">
-                    <h4 className="font-serif-luxury text-sm text-ivory line-clamp-1 group-hover:text-champagne transition-colors duration-300">
+                    <h4 className="font-serif-luxury text-xs sm:text-[13px] text-ivory line-clamp-1 group-hover:text-champagne transition-colors duration-300">
                       {prod.name}
                     </h4>
-                    <div className="text-xs font-semibold text-champagne mt-1">
+                    <div className="text-xs font-semibold text-champagne mt-0.5">
                       ₹{prod.price.toLocaleString('en-IN')}
                     </div>
                   </div>
