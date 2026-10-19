@@ -6,8 +6,8 @@ export default function Hero() {
   const { navigateToCatalogue, setIsAboutOpen } = useShop();
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[74vh] lg:min-h-[78vh] flex items-center overflow-hidden bg-obsidian pt-8 pb-10 md:pt-10 md:pb-12">
-      {/* 1. Genuine Full-Bleed Background Video 4 (100% Original Opacity, Sharp, No Dimming Overlay) */}
+    <section className="relative h-[calc(100svh-100px)] min-h-[520px] max-h-[820px] flex items-center overflow-hidden bg-obsidian py-4 sm:py-6 md:py-8">
+      {/* 1. Background Video 4 (Complete viewport fit, proportional and undistorted) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
@@ -15,12 +15,12 @@ export default function Hero() {
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover object-[55%_25%] md:object-[50%_25%]"
+          className="w-full h-full object-cover object-[52%_42%] md:object-[50%_40%]"
         >
           <source src="/Video/Video%20(4).mp4" type="video/mp4" />
         </video>
 
-        {/* Soft edge seams for top & bottom borders only — strictly localized, preserving 100% original video brightness across the section */}
+        {/* Soft edge seams for top & bottom borders preserving video brightness and button legibility */}
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,12,0.45)_0%,transparent_14%,transparent_86%,rgba(11,11,12,0.55)_100%)] pointer-events-none" />
       </div>
 

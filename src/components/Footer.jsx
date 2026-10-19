@@ -46,7 +46,7 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-obsidian text-ivory border-t border-champagne/20 pt-16 pb-12 overflow-hidden">
-      {/* Genuine Full-Width Background Video 5 (Enhanced clarity & ~15-20% increased visibility) */}
+      {/* Background Video 5 with calibrated visibility and dark overlay for excellent text contrast */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
@@ -55,17 +55,15 @@ export default function Footer() {
           muted
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover object-center opacity-100 filter contrast-110 brightness-105 saturate-[1.05]"
+          className="w-full h-full object-cover object-center opacity-[0.52] filter contrast-105 brightness-90 saturate-[0.95]"
         >
           <source src="/Video/Video%20(5).mp4" type="video/mp4" />
         </video>
 
-        {/* Lightweight translucent overlay ensuring high video clarity while keeping text readable */}
-        <div className="absolute inset-0 bg-obsidian/10 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(11,11,12,0.25)_100%)] pointer-events-none" />
-
-        {/* Soft edge seam transition */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,12,0.5)_0%,transparent_10%,transparent_92%,rgba(11,11,12,0.5)_100%)] pointer-events-none" />
+        {/* Separate dark overlay layer providing deep contrast so all text, links, and forms are easily readable */}
+        <div className="absolute inset-0 bg-obsidian/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/80 via-obsidian/45 to-obsidian/85 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(11,11,12,0.5)_100%)] pointer-events-none" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

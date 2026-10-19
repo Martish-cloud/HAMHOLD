@@ -56,21 +56,17 @@ export default function TheHamholdEdit() {
 
   return (
     <section className="py-12 sm:py-14 md:py-16 bg-obsidian border-t border-champagne/15 relative overflow-hidden">
-      {/* Background Image Layer (Layer B): Original White-Top Model (~50-55% perceived visibility across section) */}
+      {/* Background Image Layer: Luxury Jewellery Showroom Interior (~45-47% perceived visibility) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <picture className="w-full h-full block">
-          <source media="(max-width: 640px)" srcSet="/images/editorial/the-hamhold-edit/hamhold-edit-01-mobile.webp" type="image/webp" />
-          <source srcSet="/images/editorial/the-hamhold-edit/hamhold-edit-01.webp" type="image/webp" />
-          <img
-            src="/images/editorial/the-hamhold-edit/hamhold-edit-01.webp"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover object-[50%_25%] opacity-[0.52] filter contrast-105 brightness-95"
-          />
-        </picture>
-        {/* Subtle dark overlay providing ~50-55% perceived visibility behind both cards */}
-        <div className="absolute inset-0 bg-obsidian/30 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/60 via-transparent to-obsidian/70 pointer-events-none" />
+        <img
+          src="/images/editorial/the-hamhold-edit/jewellery-showroom-bg.png"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover object-center opacity-[0.46] filter contrast-105 brightness-95"
+        />
+        {/* Balanced dark overlay ensuring ~45-47% perceived visibility while keeping text and cards crisp */}
+        <div className="absolute inset-0 bg-obsidian/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-transparent to-obsidian/75 pointer-events-none" />
       </div>
 
       {/* Ambient background glow */}
